@@ -6,19 +6,34 @@ import java.util.List;
 public class Graph {
 
 	int m = 4;
-	
+
+	Vertex s;
+	Vertex t;
 	List<Vertex> vertices;
+	List<Segment> segments;
 
 	public Graph(int m) {
 		super();
 		this.m = m;
 		
-		vertices = new ArrayList<Vertex>;
-		Segment prevS = null;
-		for (int i = 0; i < m; i++) {
+		t = new Vertex(0);
+		vertices.add(t);
+
+		vertices = new ArrayList<Vertex>();
+		Segment prevSegment = null;
+		Vertex prevVertex = t;
+		for (int i = 1; i < m; i++) {
 			Vertex v = new Vertex(i);
-			v.entering = 
+			if (prevSegment != null)
+				v.entering.add(prevSegment);
+
 			vertices.add(v);
+
+			Segment segment = new Segment(prevVertex, v);
+			v.leaving.add(segment);
+
+			prevSegment = segment;
+			prevVertex = v;
 		}
 	}
 
