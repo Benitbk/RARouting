@@ -30,6 +30,7 @@ public class Graph {
 			vertices.add(v);
 
 			Segment segment = new Segment(prevVertex, v);
+			segments.add(segment);
 			v.leaving.add(segment);
 
 			prevSegment = segment;
