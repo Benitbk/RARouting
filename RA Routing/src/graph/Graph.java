@@ -5,24 +5,22 @@ import java.util.List;
 
 public class Graph {
 
-	int m = 4;
+	int length;
 
-	Vertex s;
-	Vertex t;
 	List<Vertex> vertices;
 	List<Segment> segments;
 
-	public Graph(int m) {
+	public Graph(int length) {
 		super();
-		this.m = m;
-		
-		t = new Vertex(0);
-		vertices.add(t);
+		this.length = length;
 
+		Vertex first = new Vertex(0);
 		vertices = new ArrayList<Vertex>();
+		vertices.add(first);
+
 		Segment prevSegment = null;
-		Vertex prevVertex = t;
-		for (int i = 1; i < m; i++) {
+		Vertex prevVertex = first;
+		for (int i = 1; i < length; i++) {
 			Vertex v = new Vertex(i);
 			if (prevSegment != null)
 				v.entering.add(prevSegment);
