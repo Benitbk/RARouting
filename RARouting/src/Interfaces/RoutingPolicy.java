@@ -1,6 +1,7 @@
-package game;
+package interfaces;
 
 import agent.Agent;
+import game.Game;
 
 /**
  * Created by benitbk on 11/04/2016.
@@ -13,5 +14,5 @@ public abstract class RoutingPolicy {
     {
         this.game = game;
     }
-    abstract void improveAgentPath(Agent agent);
+    public abstract void improveAgentPath(Agent agent);
 }
