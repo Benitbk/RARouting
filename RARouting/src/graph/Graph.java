@@ -11,11 +11,11 @@ public class Graph {
 	List<Segment> segments;
 
 	public Graph(int length) {
-		super();
 		this.length = length;
 
 		Vertex first = new Vertex(0);
 		vertices = new ArrayList<Vertex>();
+        segments = new ArrayList<Segment>();
 		vertices.add(first);
 
 		Segment prevSegment = null;
