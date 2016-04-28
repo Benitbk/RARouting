@@ -19,6 +19,10 @@ public class AgentRoute {
         this.edges = new ArrayList<Edge>();
     }
 
+	@Override
+	public String toString() {
+		return edges.toString();
+	}
 }
 
 

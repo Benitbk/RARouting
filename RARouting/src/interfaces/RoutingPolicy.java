@@ -2,7 +2,7 @@ package interfaces;
 
 import agent.Agent;
 import agent.AgentRoute;
-import agent.AgentRoutingState;
+import game.GameState;
 import game.Game;
 
 /**
@@ -10,12 +10,11 @@ import game.Game;
  */
 public abstract class RoutingPolicy {
 
-    protected final Game game;
-    public AgentRoutingState routingState;
+    protected final GameState gameState;
 
-    public RoutingPolicy(Game game)
+    public RoutingPolicy(GameState gameState)
     {
-        this.game = game;
+        this.gameState = gameState;
     }
 
     public abstract AgentRoute getAgentImprovedRoute(Agent agent);

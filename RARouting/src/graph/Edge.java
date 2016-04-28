@@ -1,7 +1,8 @@
 package graph;
 
-public class Edge implements Comparable<Edge>{
+public class Edge implements Comparable<Edge> {
 
+	public int index;
 	public Segment segment;
 	public Double cost;
 
@@ -17,9 +18,8 @@ public class Edge implements Comparable<Edge>{
 	}
 
 	@Override
-	public String toString()
-	{
-		return (""+cost);
+	public String toString() {
+		return "" + index + "@" + segment.id;
 	}
 
 }

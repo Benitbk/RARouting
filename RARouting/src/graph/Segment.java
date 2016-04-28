@@ -11,40 +11,47 @@ public class Segment {
 	public Vertex s;
 	public Vertex t;
 
+	static int nextId = 0;
+	public int id;
+
 	public Segment(List<Edge> edges, Vertex s, Vertex t) {
 		super();
+		this.id = nextId++;
 		this.edges = edges;
 		this.s = s;
 		this.t = t;
 	}
 
 	public Segment(Vertex s, Vertex t) {
+		this.id = nextId++;
 		this.s = s;
 		this.t = t;
-		
-		//randomize number of edges
+
+		// randomize number of edges
 		int numOfEdges = (int) (Math.random() * 5) + 1;
-		
-		//randomize costs
+
+		// randomize costs
 		edges = new ArrayList<Edge>();
 		for (int i = 0; i < numOfEdges; i++) {
-			Edge edge = new Edge(this, Math.random()*50);
+			Edge edge = new Edge(this, Math.random() * 50);
 			edges.add(edge);
 		}
-		
+
 		Collections.sort(edges);
+
+		int i = 0;
+		for (Edge edge : edges) {
+			edge.index = i++;
+		}
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("source " + s.toString() + " to dest " + t.toString() + "\n");
-		sb.append("The Edges of the segment: \n");
-
-		for (int i=0; i<edges.size(); i++)
-		{
-			sb.append("Edge "+i+ " With cost " + edges.get(i).toString() +"\n");
+		sb.append(s.toString() + "-" + t.toString() + "\n");
+		sb.append("Edges Costs: ");
+		for (Edge edge : edges) {
+			sb.append(String.format("%.3f", edge.cost) + ", ");
 		}
 
 		return sb.toString();

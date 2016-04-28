@@ -15,42 +15,32 @@ public class Graph {
 
 		Vertex first = new Vertex(0);
 		vertices = new ArrayList<Vertex>();
-        segments = new ArrayList<Segment>();
+		segments = new ArrayList<Segment>();
 		vertices.add(first);
 
-		Segment prevSegment = null;
 		Vertex prevVertex = first;
 		for (int i = 1; i < length; i++) {
 			Vertex v = new Vertex(i);
-			if (prevSegment != null)
-				v.entering.add(prevSegment);
-
 			vertices.add(v);
 
 			Segment segment = new Segment(prevVertex, v);
 			segments.add(segment);
-			v.leaving.add(segment);
+			prevVertex.leaving.add(segment);
+			v.entering.add(segment);
 
-			prevSegment = segment;
 			prevVertex = v;
 		}
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		for (int i=0; i<segments.size(); i++)
-		{
-			sb.append("Segment " + i + " from " + segments.get(i).toString() +"\n");
+		for (int i = 0; i < segments.size(); i++) {
+			sb.append("Segment " + i + ": " + segments.get(i).toString()
+					+ "\n");
 		}
 
 		return sb.toString();
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

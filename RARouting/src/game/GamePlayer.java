@@ -2,7 +2,6 @@ package game;
 
 import agent.Agent;
 import agent.AgentRoute;
-import agent.AgentRoutingState;
 import interfaces.GamePolicy;
 
 /**
@@ -10,31 +9,37 @@ import interfaces.GamePolicy;
  */
 public class GamePlayer {
 
-    private final Game game;
-    private final GamePolicy gamePolicy;
-    private final AgentRoutingState routingState;
+	private final GamePolicy gamePolicy;
+	private GameState gameState;
 
-    public GamePlayer(Game game, GamePolicy gamePolicy) {
-        this.game = game;
-        this.gamePolicy = gamePolicy;
-        this.routingState = new AgentRoutingState();
-        gamePolicy.routingPolicy.routingState = this.routingState;
-    }
+	public GamePlayer(GameState gameState, GamePolicy gamePolicy) {
+		this.gamePolicy = gamePolicy;
+		this.gameState = gameState;
+	}
 
+	public void start() {
+		Agent agent = gamePolicy.agentPolicy.getNextAgent();
 
-    public boolean canAgentImprove(Agent agent) {
-        return false;
-    }
+		System.out
+				.println("Iteration\tAgent\tRoute\tAgent Cost\tSocial Cost\t");
 
+		for (int i = 0; agent != null; i++) {
+			System.out.print(i + "\t" + agent.id + "\t");
 
-    public void start() {
-        Agent agent = gamePolicy.agentPolicy.getNextAgent();
-        while (agent != null) {
-            AgentRoute newRoute = gamePolicy.routingPolicy.getAgentImprovedRoute(agent);
-            this.routingState.UpdateAgentRouting(agent, newRoute);
-            agent = gamePolicy.agentPolicy.getNextAgent();
-        }
+			AgentRoute newRoute = gamePolicy.routingPolicy
+					.getAgentImprovedRoute(agent);
+			this.gameState.UpdateAgentRouting(agent, newRoute);
 
-    }
+			System.out.print(gameState.getAgentRoute(agent) + "\t");
+			System.out.print(gameState.getAgenCost(agent) + "\t"
+					+ gameState.getSocialCost() + "\t");
+
+			agent = gamePolicy.agentPolicy.getNextAgent();
+
+			System.out.println();
+		}
+		System.out.println("Done!");
+
+	}
 
 }

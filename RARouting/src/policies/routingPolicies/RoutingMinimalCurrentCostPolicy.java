@@ -2,7 +2,7 @@ package policies.routingPolicies;
 
 import agent.Agent;
 import agent.AgentRoute;
-import agent.AgentRoutingState;
+import game.GameState;
 import game.Game;
 import graph.Edge;
 import graph.Segment;
@@ -17,48 +17,50 @@ import java.util.List;
  * Created by benitbk on 28/04/2016.
  */
 public class RoutingMinimalCurrentCostPolicy extends RoutingPolicy {
-    public RoutingMinimalCurrentCostPolicy(Game game) {
-        super(game);
-    }
+	public RoutingMinimalCurrentCostPolicy(GameState gameState) {
+		super(gameState);
+	}
 
-    @Override
-    public AgentRoute getAgentImprovedRoute(Agent agent) {
-        Segment currentSegment = agent.source.leaving.get(0);
-        AgentRoute newRoute = new AgentRoute();
+	@Override
+	public AgentRoute getAgentImprovedRoute(Agent agent) {
+		Segment currentSegment = agent.source.leaving.get(0);
+		AgentRoute newRoute = new AgentRoute();
 
-        AgentRoute currentRoute = routingState.getAgentRoute(agent);
-        Edge currentEdge = null;
-        Iterator<Edge> routeIterator = null;
-        if (currentRoute != null) {
-            routeIterator = currentRoute.edges.iterator();
-            currentEdge = routeIterator.next();
-        }
-        while (currentSegment != null && currentSegment.s != agent.destination) {
-            double minCost = Double.MAX_VALUE;
-            Edge minEdge = null;
-            for (Edge edge : currentSegment.edges) {
-                        Integer edgeLoad = routingState.getNumberOfAgentsOnEdge(edge);
-                Double sharedCost;
-                if (edge == currentEdge)
-                    sharedCost = edge.cost / edgeLoad;
-                else
-                    sharedCost = edge.cost / (edgeLoad + 1);
+		AgentRoute currentRoute = gameState.getAgentRoute(agent);
+		Edge currentEdge = null;
+		Iterator<Edge> routeEdgesIterator = null;
+		if (currentRoute != null)
+			routeEdgesIterator = currentRoute.edges.iterator();
 
-                if(sharedCost < minCost){
-                    minCost = sharedCost;
-                    minEdge = edge;
-                }
+		while (currentSegment.s != agent.destination) {
 
-            }
+			if (routeEdgesIterator != null)
+				currentEdge = routeEdgesIterator.next();
 
-            newRoute.edges.add(minEdge);
+			double minCost = Double.MAX_VALUE;
+			Edge minEdge = null;
+			for (Edge edge : currentSegment.edges) {
+				Integer edgeLoad = gameState.getNumberOfAgentsOnEdge(edge);
+				Double sharedCost;
+				if (edge == currentEdge)
+					sharedCost = edge.cost / edgeLoad;
+				else
+					sharedCost = edge.cost / (edgeLoad + 1);
 
-            if (routeIterator != null) {
-                currentEdge = routeIterator.next();
-            }
-            currentSegment = currentSegment.t.leaving.get(0);
-        }
-        return newRoute;
-    }
+				if (sharedCost < minCost) {
+					minCost = sharedCost;
+					minEdge = edge;
+				}
+
+			}
+
+			newRoute.edges.add(minEdge);
+
+			if(currentSegment.t.leaving.size() == 0)
+				break;
+			
+			currentSegment = currentSegment.t.leaving.get(0);
+		}
+		return newRoute;
+	}
 }
-
