@@ -36,6 +36,18 @@ public class Graph {
 		}
 	}
 
+	@Override
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<segments.size(); i++)
+		{
+			sb.append("Segment " + i + " from " + segments.get(i).toString() +"\n");
+		}
+
+		return sb.toString();
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

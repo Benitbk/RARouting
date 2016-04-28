@@ -34,4 +34,19 @@ public class Segment {
 		
 		Collections.sort(edges);
 	}
+
+	@Override
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("source " + s.toString() + " to dest " + t.toString() + "\n");
+		sb.append("The Edges of the segment: \n");
+
+		for (int i=0; i<edges.size(); i++)
+		{
+			sb.append("Edge "+i+ " With cost " + edges.get(i).toString() +"\n");
+		}
+
+		return sb.toString();
+	}
 }

@@ -20,4 +20,10 @@ public class Agent {
         this.destination = destination;
 
     }
+
+    @Override
+    public String toString()
+    {
+        return ("Id "+id + " Source " + source.toString() +", Dest " +destination.toString());
+    }
 }

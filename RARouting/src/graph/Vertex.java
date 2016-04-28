@@ -24,4 +24,9 @@ public class Vertex {
 		this.leaving = new ArrayList<Segment>();
 	}
 
+	@Override
+	public String toString()
+	{
+		return (""+id);
+	}
 }

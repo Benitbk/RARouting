@@ -16,4 +16,10 @@ public class Edge implements Comparable<Edge>{
 		return cost.compareTo(e.cost);
 	}
 
+	@Override
+	public String toString()
+	{
+		return (""+cost);
+	}
+
 }
