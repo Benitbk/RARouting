@@ -2,8 +2,8 @@ package graph;
 
 public class Edge implements Comparable<Edge>{
 
-	Segment segment;
-	Double cost;
+	public Segment segment;
+	public Double cost;
 
 	public Edge(Segment segment, double cost) {
 		super();

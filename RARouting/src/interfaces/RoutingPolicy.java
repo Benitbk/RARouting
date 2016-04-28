@@ -11,12 +11,11 @@ import game.Game;
 public abstract class RoutingPolicy {
 
     protected final Game game;
-    protected final AgentRoutingState routingState;
+    public AgentRoutingState routingState;
 
-    public RoutingPolicy(Game game, AgentRoutingState routingState)
+    public RoutingPolicy(Game game)
     {
         this.game = game;
-        this.routingState = routingState;
     }
 
     public abstract AgentRoute getAgentImprovedRoute(Agent agent);

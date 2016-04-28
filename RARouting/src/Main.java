@@ -1,9 +1,13 @@
 import agent.Agent;
+import agent.AgentRoutingState;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import game.Game;
 import game.GamePlayer;
 import graph.Graph;
 import graph.Vertex;
+import interfaces.GamePolicy;
+import policies.agentPolicies.AgentIncreasingPolicy;
+import policies.routingPolicies.RoutingMinimalCurrentCostPolicy;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -42,6 +46,9 @@ public class Main
         Game game = new Game(graph,agents);
         System.out.print(game.toString());
 
-        GamePlayer gamePlayer = new GamePlayer(game, null);
+        GamePlayer gamePlayer = new GamePlayer(game,
+                                new GamePolicy(new AgentIncreasingPolicy(game),
+                                               new RoutingMinimalCurrentCostPolicy(game)));
+        gamePlayer.start();
     }
 }

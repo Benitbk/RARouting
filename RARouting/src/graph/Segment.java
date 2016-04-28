@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Segment {
 
-	List<Edge> edges;
+	public List<Edge> edges;
 
 	public Vertex s;
 	public Vertex t;

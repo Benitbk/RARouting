@@ -9,7 +9,7 @@ import java.util.List;
  * Created by benitbk on 28/04/2016.
  */
 public class AgentRoute {
-    List<Edge> edges;
+    public List<Edge> edges;
     public AgentRoute(List<Edge> edges)
     {
         this.edges = edges;
