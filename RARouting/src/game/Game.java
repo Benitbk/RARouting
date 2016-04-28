@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Game {
 
-    private final Graph graph;
-    private final List<Agent> agents;
+    public final Graph graph;
+    public final List<Agent> agents;
 
 
     public Game(Graph graph, List<Agent> agents)

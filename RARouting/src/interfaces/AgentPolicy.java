@@ -8,7 +8,7 @@ import game.Game;
  */
 public abstract class AgentPolicy {
 
-    private final Game game;
+    protected final Game game;
 
     public AgentPolicy(Game game)
     {
