@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e9f274b3-b51b-4b59-9cd3-c09e6154aa11" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/Main.java" afterPath="$PROJECT_DIR$/RARouting/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java" afterPath="$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/agent/AgentRoutingState.java" afterPath="$PROJECT_DIR$/RARouting/src/agent/AgentRoutingState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/game/GamePlayer.java" afterPath="$PROJECT_DIR$/RARouting/src/game/GamePlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/graph/Edge.java" afterPath="$PROJECT_DIR$/RARouting/src/graph/Edge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/graph/Segment.java" afterPath="$PROJECT_DIR$/RARouting/src/graph/Segment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/interfaces/RoutingPolicy.java" afterPath="$PROJECT_DIR$/RARouting/src/interfaces/RoutingPolicy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/policies/routingPolicies/RoutingMinimalCurrentCostPolicy.java" afterPath="$PROJECT_DIR$/RARouting/src/policies/routingPolicies/RoutingMinimalCurrentCostPolicy.java" />
     </list>
     <ignored path="RARouting.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -678,7 +670,13 @@
       <option name="project" value="LOCAL" />
       <updated>1461832356702</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add override toString">
+      <created>1461835218376</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1461835218376</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
