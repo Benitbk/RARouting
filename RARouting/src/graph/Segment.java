@@ -8,8 +8,8 @@ public class Segment {
 
 	List<Edge> edges;
 
-	Vertex s;
-	Vertex t;
+	public Vertex s;
+	public Vertex t;
 
 	public Segment(List<Edge> edges, Vertex s, Vertex t) {
 		super();

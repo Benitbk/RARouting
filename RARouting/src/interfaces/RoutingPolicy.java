@@ -1,6 +1,8 @@
 package interfaces;
 
 import agent.Agent;
+import agent.AgentRoute;
+import agent.AgentRoutingState;
 import game.Game;
 
 /**
@@ -8,11 +10,15 @@ import game.Game;
  */
 public abstract class RoutingPolicy {
 
-    private final Game game;
+    protected final Game game;
+    protected final AgentRoutingState routingState;
 
-    public RoutingPolicy(Game game)
+    public RoutingPolicy(Game game, AgentRoutingState routingState)
     {
         this.game = game;
+        this.routingState = routingState;
     }
-    public abstract void improveAgentPath(Agent agent);
+
+    public abstract AgentRoute getAgentImprovedRoute(Agent agent);
+
 }
