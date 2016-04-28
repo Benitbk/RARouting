@@ -7,8 +7,8 @@ public class Graph {
 
 	int length;
 
-	List<Vertex> vertices;
-	List<Segment> segments;
+	public List<Vertex> vertices;
+	public List<Segment> segments;
 
 	public Graph(int length) {
 		this.length = length;
