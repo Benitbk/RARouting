@@ -17,7 +17,6 @@ public class AgentIncreasingPolicy extends AgentPolicy{
 
     @Override
     public Agent getNextAgent() {
-        return this.game.agents.;//agents[currentAgentIndex++];
-
+        return this.game.agents.get(currentAgentIndex);//agents[currentAgentIndex++];
     }
 }
