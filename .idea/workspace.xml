@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9f274b3-b51b-4b59-9cd3-c09e6154aa11" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RARouting/src/agent/AgentRoutingState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/game/GamePlayer.java" afterPath="$PROJECT_DIR$/RARouting/src/game/GamePlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/policies/routingPolicies/RoutingMinimalCurrentCostPolicy.java" afterPath="$PROJECT_DIR$/RARouting/src/policies/routingPolicies/RoutingMinimalCurrentCostPolicy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/interfaces/RoutingPolicy.java" afterPath="$PROJECT_DIR$/RARouting/src/interfaces/RoutingPolicy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/graph/Segment.java" afterPath="$PROJECT_DIR$/RARouting/src/graph/Segment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java" afterPath="$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java" />
     </list>
     <ignored path="RARouting.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +34,7 @@
         <entry file="file://$PROJECT_DIR$/RARouting/src/policies/routingPolicies/RoutingMinimalCurrentCostPolicy.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#414#415#0" expanded="true" />
@@ -49,7 +44,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
@@ -82,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AgentRoute.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AgentRoute.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.41493776">
+              <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#225#226#0" expanded="true" />
@@ -194,9 +189,9 @@
         <option value="$PROJECT_DIR$/RARouting/src/game/GamePlayer.java" />
         <option value="$PROJECT_DIR$/RARouting/src/interfaces/RoutingPolicy.java" />
         <option value="$PROJECT_DIR$/RARouting/src/graph/Segment.java" />
-        <option value="$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java" />
         <option value="$PROJECT_DIR$/RARouting/src/policies/routingPolicies/RoutingMinimalCurrentCostPolicy.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java" />
       </list>
     </option>
   </component>
@@ -702,7 +697,7 @@
       <workItem from="978307310505" duration="1451000" />
       <workItem from="1460386925148" duration="2133000" />
       <workItem from="978307294728" duration="106000" />
-      <workItem from="1461827164992" duration="4075000" />
+      <workItem from="1461827164992" duration="4121000" />
     </task>
     <task id="LOCAL-00001" summary="Interfaces, game and agent definition">
       <created>1460384405054</created>
@@ -714,7 +709,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11048000" />
+    <option name="totallyTimeSpent" value="11094000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="820" extended-state="0" />
@@ -910,24 +905,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#225#226#0" expanded="true" />
-            <element signature="e#259#260#0" expanded="true" />
-            <element signature="e#289#290#0" expanded="true" />
-            <element signature="e#339#340#0" expanded="true" />
-          </folding>
+          <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RARouting/src/policies/routingPolicies/RoutingMinimalCurrentCostPolicy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#414#415#0" expanded="true" />
@@ -936,11 +925,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/RARouting/src/agent/AgentRoute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
-          <folding />
+        <state vertical-scroll-proportion="0.41493776">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#225#226#0" expanded="true" />
+            <element signature="e#259#260#0" expanded="true" />
+            <element signature="e#289#290#0" expanded="true" />
+            <element signature="e#339#340#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
