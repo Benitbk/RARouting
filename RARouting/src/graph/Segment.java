@@ -28,7 +28,7 @@ public class Segment {
 		this.t = t;
 
 		// randomize number of edges
-		int numOfEdges = (int) (Math.random() * 5) + 1;
+		int numOfEdges = (int) (Math.random() * 3) + 1;
 
 		// randomize costs
 		edges = new ArrayList<Edge>();

@@ -17,7 +17,8 @@ public class GamePlayer {
 		this.gameState = gameState;
 	}
 
-	public void start() {
+	public void start()
+    {
 		Agent agent = gamePolicy.agentPolicy.getNextAgent();
 
 		System.out
@@ -31,8 +32,8 @@ public class GamePlayer {
 			this.gameState.UpdateAgentRouting(agent, newRoute);
 
 			System.out.print(gameState.getAgentRoute(agent) + "\t");
-			System.out.print(gameState.getAgenCost(agent) + "\t"
-					+ gameState.getSocialCost() + "\t");
+
+			System.out.printf("%.3f\t%.3f\t",gameState.getAgenCost(agent), gameState.getSocialCost());
 
 			agent = gamePolicy.agentPolicy.getNextAgent();
 
