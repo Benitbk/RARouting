@@ -1,15 +1,15 @@
-package game;
+package segmentsGraph.game;
 
-import graph.Edge;
-import graph.Segment;
+import segmentsGraph.graph.Edge;
+import segmentsGraph.graph.Segment;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import agent.Agent;
-import agent.AgentRoute;
+import segmentsGraph.agent.Agent;
+import segmentsGraph.agent.AgentRoute;
 
 /**
  * Created by benitbk on 28/04/2016.
@@ -59,11 +59,11 @@ public class GameState {
 		Segment currentSegment = agent.source.leaving.get(0);
 
 		// for each segment on the path, check if there is a better edge for
-		// that agent
+		// that segmentsGraph.agent
 		while (currentSegment.s != agent.destination) {
 			currentEdge = routeEdgesIterator.next();
 
-			// The cost the agent currently pay on this segment
+			// The cost the segmentsGraph.agent currently pay on this segment
 			double currentCost = currentEdge.cost
 					/ this.getNumberOfAgentsOnEdge(currentEdge);
 
@@ -73,7 +73,7 @@ public class GameState {
 
 				Integer edgeLoad = this.getNumberOfAgentsOnEdge(edge);
 
-				// The cost the agent will pay if he/she moves to that edge
+				// The cost the segmentsGraph.agent will pay if he/she moves to that edge
 				double sharedCost = edge.cost / (edgeLoad + 1);
 
 				if (sharedCost < currentCost) {

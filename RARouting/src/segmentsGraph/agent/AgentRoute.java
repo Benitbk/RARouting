@@ -1,6 +1,6 @@
-package agent;
+package segmentsGraph.agent;
 
-import graph.Edge;
+import segmentsGraph.graph.Edge;
 
 import java.util.ArrayList;
 import java.util.List;

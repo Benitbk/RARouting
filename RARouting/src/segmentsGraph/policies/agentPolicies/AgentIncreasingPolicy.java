@@ -1,11 +1,10 @@
-package policies.agentPolicies;
+package segmentsGraph.policies.agentPolicies;
 
 import java.util.List;
 
-import agent.Agent;
-import game.Game;
-import game.GameState;
-import interfaces.AgentPolicy;
+import segmentsGraph.agent.Agent;
+import segmentsGraph.game.GameState;
+import segmentsGraph.interfaces.AgentPolicy;
 
 /**
  * Created by benitbk on 28/04/2016.

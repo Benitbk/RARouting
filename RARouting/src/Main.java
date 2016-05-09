@@ -1,12 +1,12 @@
-import agent.Agent;
-import game.GameState;
-import game.Game;
-import game.GamePlayer;
-import graph.Graph;
-import graph.Vertex;
-import interfaces.GamePolicy;
-import policies.agentPolicies.AgentIncreasingPolicy;
-import policies.routingPolicies.RoutingMinimalCurrentCostPolicy;
+import segmentsGraph.agent.Agent;
+import segmentsGraph.game.GameState;
+import segmentsGraph.game.Game;
+import segmentsGraph.game.GamePlayer;
+import segmentsGraph.graph.Graph;
+import segmentsGraph.graph.Vertex;
+import segmentsGraph.interfaces.GamePolicy;
+import segmentsGraph.policies.agentPolicies.AgentIncreasingPolicy;
+import segmentsGraph.policies.routingPolicies.RoutingMinimalCurrentCostPolicy;
 
 import java.util.ArrayList;
 import java.util.Random;

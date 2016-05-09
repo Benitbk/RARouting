@@ -1,17 +1,13 @@
-package policies.routingPolicies;
+package segmentsGraph.policies.routingPolicies;
 
-import agent.Agent;
-import agent.AgentRoute;
-import game.GameState;
-import game.Game;
-import graph.Edge;
-import graph.Segment;
-import interfaces.RoutingPolicy;
+import segmentsGraph.agent.Agent;
+import segmentsGraph.agent.AgentRoute;
+import segmentsGraph.game.GameState;
+import segmentsGraph.graph.Edge;
+import segmentsGraph.graph.Segment;
+import segmentsGraph.interfaces.RoutingPolicy;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by benitbk on 28/04/2016.

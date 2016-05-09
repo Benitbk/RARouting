@@ -1,9 +1,6 @@
-package agent;
+package segmentsGraph.agent;
 
-import graph.Edge;
-import graph.Vertex;
-
-import java.util.List;
+import segmentsGraph.graph.Vertex;
 
 /**
  * Created by benitbk on 11/04/2016.
