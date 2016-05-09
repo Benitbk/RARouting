@@ -2,7 +2,7 @@ package seriesParallelGraph;
 
 import java.security.InvalidParameterException;
 
-public class ParallelGraph implements SPGraph {
+public class ParallelGraph extends SPGraph {
 
 	SPGraph g1;
 	SPGraph g2;

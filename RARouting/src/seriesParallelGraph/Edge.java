@@ -1,7 +1,7 @@
 package seriesParallelGraph;
 
 
-public class Edge implements SPGraph {
+public class Edge extends SPGraph {
 	
 	Vertex s;
 	Vertex t;
