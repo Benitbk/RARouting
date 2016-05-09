@@ -1,3 +1,5 @@
+package segmentsGraph;
+
 import segmentsGraph.agent.Agent;
 import segmentsGraph.game.GameState;
 import segmentsGraph.game.Game;
