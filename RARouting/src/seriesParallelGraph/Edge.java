@@ -13,4 +13,10 @@ public class Edge implements SPGraph {
 		return new Path(this);
 	}
 
+	@Override
+	public SubSPGraph GenerateSubGraphFromVerticesRecursive(Vertex s, Vertex t) {
+		return new SubSPGraph(this,this.s == s,this.t == t);
+	}
+
+
 }
