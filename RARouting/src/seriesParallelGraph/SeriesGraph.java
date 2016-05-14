@@ -1,14 +1,42 @@
 package seriesParallelGraph;
 
 import java.security.InvalidParameterException;
+import java.util.Map;
 
 public class SeriesGraph extends SPGraph {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1067598364719934208L;
+
 	SPGraph g1;
 	SPGraph g2;
 
+	float width;
+	float length;
+
 	public SeriesGraph(SPGraph g1, SPGraph g2) {
+		this(g1, g2, false);
+	}
+
+	public SeriesGraph(SPGraph g1, SPGraph g2, boolean connect) {
 		this.g1 = g1;
 		this.g2 = g2;
+
+		if (connect) {
+			if (g1.t != g2.s) {
+				g1.t.merge(g2.s);
+			}
+		}
+
+		this.s = g1.s;
+		this.t = g2.t;
+
+		this.length = g1.getLength() + g2.getLength();
+		if (g1.getWidth() + g2.getWidth() < 1)
+			this.width = 1;
+		else
+			this.width = Math.max(g1.getWidth(), g2.getWidth());
 	}
 
 	@Override
@@ -23,7 +51,7 @@ public class SeriesGraph extends SPGraph {
 		SubSPGraph subG1Graph = g1.GenerateSubGraphFromVerticesRecursive(s, t);
 		SubSPGraph subG2Graph = g2.GenerateSubGraphFromVerticesRecursive(s, t);
 
-		if ((subG1Graph.tExists && subG2Graph.sExists)) {
+		if (subG1Graph.tExists && subG2Graph.sExists) {
 			throw new InvalidParameterException("no path from s to t");
 		}
 
@@ -37,15 +65,15 @@ public class SeriesGraph extends SPGraph {
 		if (subG1Graph.sExists) {
 			if (subG2Graph.tExists) {
 				return new SubSPGraph(new SeriesGraph(subG1Graph.graph,
-						subG2Graph.graph), true, true);
+						subG2Graph.graph, false), true, true);
 			}
-			return new SubSPGraph(new SeriesGraph(subG1Graph.graph, g2), true,
-					false);
+			return new SubSPGraph(new SeriesGraph(subG1Graph.graph, g2, false),
+					true, false);
 		}
 
 		if (subG2Graph.tExists) {
-			return new SubSPGraph(new SeriesGraph(g1, subG2Graph.graph), false,
-					true);
+			return new SubSPGraph(new SeriesGraph(g1, subG2Graph.graph, false),
+					false, true);
 		}
 		if (subG1Graph.tExists) {
 			return subG1Graph;
@@ -54,5 +82,37 @@ public class SeriesGraph extends SPGraph {
 			return subG2Graph;
 		}
 		return new SubSPGraph(this, false, false);
+	}
+
+	@Override
+	public float getLength() {
+		return this.length;
+	}
+
+	@Override
+	public float getWidth() {
+		return this.width;
+	}
+
+	@Override
+	protected STPair locateRecursive(Map<Vertex, Point> vertsLoc, float x,
+			float y, float length, float width) {
+		// ratio between the length given for drawing the graph and the length
+		// that is needed
+		float r = length / (float) this.getLength();
+		Point commonVertLoc = new Point(x + r * g1.getLength(), y + width / 2);
+
+//		STPair stPair = g1.locateRecursive(vertsLoc, x,
+//				y + (width - g1.getWidth()) / 2, r * g1.getLength(), g1.getWidth());
+		STPair stPair = g1.locateRecursive(vertsLoc, x,
+				y , r * g1.getLength(), width);
+
+		// Point commonVertLoc = new Point(x + g1.getLength() - 1, y + width /
+		// 2);
+		vertsLoc.put(stPair.t, commonVertLoc);
+
+		stPair.t = g2.locateRecursive(vertsLoc, x + r * g1.getLength(), y, r
+				* g2.getLength(), width).t;
+		return stPair;
 	}
 }

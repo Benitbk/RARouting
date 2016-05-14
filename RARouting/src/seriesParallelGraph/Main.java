@@ -3,12 +3,50 @@ package seriesParallelGraph;
 public class Main {
 
 	public static void main(String[] args) {
+
+		// SPGraph g = SPGraph.randomizeGraph(100);
+		SPGraph g = null;
+		try {
+			g = SPGraph.read("last graph");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		new SPGraphFrame(g);
+		SPGraph h = ((ParallelGraph) g).getG1();
+		new SPGraphFrame(h);
+		h = ((ParallelGraph) h).g2;
+		new SPGraphFrame(h);
+		SPGraph h2 = ((ParallelGraph) h).g2;
+		new SPGraphFrame(h2);
+
+		Vertex s = g.s;
+		// s = s.leaving.get(0).t;
+		System.out.println(s);
+
+		Vertex t = s.leaving.get(3).t;
+		System.out.println(t);
+		t = t.leaving.get(0).t;
+		System.out.println(t);
+		t = t.leaving.get(0).t;
+		System.out.println(t);
+		t = t.leaving.get(0).t;
+		System.out.println(t);
+
+		SPGraph subGraph = g.GenerateSubGraphFromVertices(s, t);
+
+//		new SPGraphFrame(subGraph);
+
+		// test();
+
+	}
+
+	public static void test() {
 		Vertex[] v = new Vertex[14];
 		for (int i = 0; i < v.length; i++) {
-			v[i] = new Vertex(i);
+			v[i] = new Vertex();
 		}
 
-		//create edges
+		// create edges
 		Edge[] edges = new Edge[17];
 		edges[0] = new Edge(0, v[0], v[1], 1);
 		edges[1] = new Edge(1, v[1], v[2], 1);
@@ -28,7 +66,7 @@ public class Main {
 		edges[15] = new Edge(15, v[8], v[12], 1);
 		edges[16] = new Edge(16, v[12], v[10], 1);
 
-		//create graph
+		// create graph
 		SPGraph g1 = new SeriesGraph(edges[1], edges[2]);
 		g1 = new SeriesGraph(g1, edges[3]);
 
@@ -53,17 +91,22 @@ public class Main {
 		g2 = new SeriesGraph(h1, h2);
 
 		g1 = new ParallelGraph(g1, g2);
+		System.out.println("length: " + g1.getLength());
+		System.out.println("width: " + g1.getWidth());
 
-		//test sub graph generation
+		new SPGraphFrame(g1);
+
+		// test sub graph generation
 		SPGraph subGraph = g1.GenerateSubGraphFromVertices(v[8], v[4]);
-		
+
+		new SPGraphFrame(subGraph);
+
 		Path path = subGraph.solve();
 		for (Edge edge : path.edges) {
 			System.out.print(edge.id + ", ");
 		}
 		System.out.println();
-		
-		
+
 		subGraph = g1.GenerateSubGraphFromVertices(v[0], v[4]);
 
 		path = subGraph.solve();
@@ -71,7 +114,6 @@ public class Main {
 			System.out.print(edge.id + ", ");
 		}
 		System.out.println();
-
 
 		try {
 			subGraph = g1.GenerateSubGraphFromVertices(v[7], v[3]);
@@ -88,7 +130,5 @@ public class Main {
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + " - as expected");
 		}
-
 	}
-
 }

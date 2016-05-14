@@ -90,7 +90,7 @@ public class GameState {
 	}
 
 	public Double getAgenCost(Agent agent) {
-		// TODO Auto-generated method stub
+		// TODO implement
 		return Double.MAX_VALUE;
 	}
 
