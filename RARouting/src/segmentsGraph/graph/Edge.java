@@ -1,4 +1,4 @@
-package graph;
+package segmentsGraph.graph;
 
 public class Edge implements Comparable<Edge> {
 

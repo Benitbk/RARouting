@@ -1,9 +1,8 @@
-package interfaces;
+package segmentsGraph.interfaces;
 
-import agent.Agent;
-import agent.AgentRoute;
-import game.GameState;
-import game.Game;
+import segmentsGraph.agent.Agent;
+import segmentsGraph.agent.AgentRoute;
+import segmentsGraph.game.GameState;
 
 /**
  * Created by benitbk on 11/04/2016.

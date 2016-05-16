@@ -1,4 +1,4 @@
-package graph;
+package segmentsGraph.graph;
 
 import java.util.ArrayList;
 import java.util.List;

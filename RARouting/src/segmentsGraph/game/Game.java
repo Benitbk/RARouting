@@ -1,8 +1,7 @@
-package game;
+package segmentsGraph.game;
 
-import agent.Agent;
-import graph.Graph;
-import interfaces.GamePolicy;
+import segmentsGraph.agent.Agent;
+import segmentsGraph.graph.Graph;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class Game {
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("The Agents in the game are: \n");
+        sb.append("The Agents in the segmentsGraph.game are: \n");
         for (int i=0; i<agents.size(); i++)
         {
             sb.append(agents.get(i).toString() +"\n");
