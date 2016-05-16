@@ -1,7 +1,9 @@
 package seriesParallelGraph;
 
 import java.security.InvalidParameterException;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ParallelGraph extends SPGraph {
 
@@ -66,9 +68,9 @@ public class ParallelGraph extends SPGraph {
 	}
 
 	@Override
-	public SubSPGraph GenerateSubGraphFromVerticesRecursive(Vertex s, Vertex t) {
-		SubSPGraph subG1Graph = g1.GenerateSubGraphFromVerticesRecursive(s, t);
-		SubSPGraph subG2Graph = g2.GenerateSubGraphFromVerticesRecursive(s, t);
+	public SubSPGraph generateSubGraphFromVerticesRecursive(Vertex s, Vertex t) {
+		SubSPGraph subG1Graph = g1.generateSubGraphFromVerticesRecursive(s, t);
+		SubSPGraph subG2Graph = g2.generateSubGraphFromVerticesRecursive(s, t);
 
 		// if (subG1Graph.sExists && subG1Graph.tExists) {
 		// if (subG2Graph.sExists && subG2Graph.tExists) {
@@ -138,4 +140,12 @@ public class ParallelGraph extends SPGraph {
 
 		return stPair;
 	}
+
+    @Override
+    public Set<Vertex> getVerticesRecursive() {
+        Set<Vertex> set = new HashSet<>();
+        set.addAll(this.g1.getVerticesRecursive());
+        set.addAll(this.g2.getVerticesRecursive());
+        return set;
+    }
 }

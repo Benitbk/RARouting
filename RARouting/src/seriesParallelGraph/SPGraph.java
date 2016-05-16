@@ -5,11 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public abstract class SPGraph implements Serializable {
 
@@ -23,12 +19,12 @@ public abstract class SPGraph implements Serializable {
 
 	public abstract Path solve();
 
-	protected abstract SubSPGraph GenerateSubGraphFromVerticesRecursive(
+	protected abstract SubSPGraph generateSubGraphFromVerticesRecursive(
 			Vertex s, Vertex t);
 
-	public SPGraph GenerateSubGraphFromVertices(Vertex s, Vertex t) {
+	public SPGraph generateSubGraphFromVertices(Vertex s, Vertex t) {
 		SubSPGraph subSPGraph = this
-				.GenerateSubGraphFromVerticesRecursive(s, t);
+				.generateSubGraphFromVerticesRecursive(s, t);
 		if (subSPGraph.sExists && subSPGraph.tExists)
 			return subSPGraph.graph;
 		return null;
@@ -75,12 +71,12 @@ public abstract class SPGraph implements Serializable {
 		return vertsLoc;
 	}
 
-	public static SPGraph randomizeGraph(int size) {
+	public static SPGraph randomizeGraph(int size, int maxEdgeCost) {
 		Random random = new Random();
 		List<SPGraph> graphs = new ArrayList<SPGraph>();
 		for (int i = 0; i < size; i++) {
 			graphs.add(new Edge(i, new Vertex(), new Vertex(), random
-					.nextInt(50)));
+					.nextInt(maxEdgeCost)));
 		}
 
 		while (graphs.size() > 1) {
@@ -124,4 +120,12 @@ public abstract class SPGraph implements Serializable {
 		return g;
 	}
 
+    public List<Vertex> getVertices()
+    {
+        List<Vertex> result = new ArrayList();
+        result.addAll(this.getVerticesRecursive());
+        return result;
+    }
+
+    public abstract Set<Vertex> getVerticesRecursive();
 }

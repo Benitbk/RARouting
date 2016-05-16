@@ -1,6 +1,8 @@
 package seriesParallelGraph;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Edge extends SPGraph {
 
@@ -31,7 +33,7 @@ public class Edge extends SPGraph {
 	}
 
 	@Override
-	public SubSPGraph GenerateSubGraphFromVerticesRecursive(Vertex s, Vertex t) {
+	public SubSPGraph generateSubGraphFromVerticesRecursive(Vertex s, Vertex t) {
 		return new SubSPGraph(this, this.s == s, this.t == t);
 	}
 
@@ -49,6 +51,14 @@ public class Edge extends SPGraph {
 	protected STPair locateRecursive(Map<Vertex, Point> vertsLoc, float x,
 			float y, float length, float width) {
 		return new STPair(s, t);
+	}
+
+	@Override
+	public Set<Vertex> getVerticesRecursive() {
+		Set<Vertex> set = new HashSet<Vertex>();
+		set.add(this.s);
+		set.add(this.t);
+		return set;
 	}
 
 	@Override

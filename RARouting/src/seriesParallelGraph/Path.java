@@ -8,8 +8,12 @@ public class Path {
 	List<Edge> edges;
 
 	public Path(Edge edge) {
-		this.edges = new ArrayList<Edge>();
+		this();
 		edges.add(edge);
+	}
+
+	public Path() {
+		this.edges = new ArrayList<>();
 	}
 
 	public double cost() {

@@ -37,7 +37,7 @@ public class SPGraphFrame extends JFrame {
 
 		Set<Entry<Vertex, Point>> vertsSet = vertexLocations.entrySet();
 		for (Entry<Vertex, Point> entry : vertsSet) {
-			System.out.println(entry);
+//			System.out.println(entry);
 			// Vertex v = entry.getKey();
 			Point p = entry.getValue();
 			p.x *= scale.x;

@@ -1,38 +1,49 @@
 package seriesParallelGraph;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
 	public static void main(String[] args) {
 
-		// SPGraph g = SPGraph.randomizeGraph(100);
-		SPGraph g = null;
-		try {
-			g = SPGraph.read("last graph");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-//		new SPGraphFrame(g);
-		SPGraph h = ((ParallelGraph) g).getG1();
-		new SPGraphFrame(h);
-		h = ((ParallelGraph) h).g2;
-		new SPGraphFrame(h);
-		SPGraph h2 = ((ParallelGraph) h).g2;
-		new SPGraphFrame(h2);
+		SPGraph g = SPGraph.randomizeGraph(50, 50);
+//		SPGraph g = null;
+//		try {
+//			g = SPGraph.read("last graph");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		new SPGraphFrame(g);
+//		SPGraph h = ((ParallelGraph) g).getG1();
+//		new SPGraphFrame(h);
+//		h = ((ParallelGraph) h).g2;
+//		new SPGraphFrame(h);
+//		SPGraph h2 = ((ParallelGraph) h).g2;
+//		new SPGraphFrame(h2);
 
-		Vertex s = g.s;
+//		Vertex s = g.s;
 		// s = s.leaving.get(0).t;
-		System.out.println(s);
+//		System.out.println(s);
+//
+//		Vertex t = s.leaving.get(3).t;
+//		System.out.println(t);
+//		t = t.leaving.get(0).t;
+//		System.out.println(t);
+//		t = t.leaving.get(0).t;
+//		System.out.println(t);
+//		t = t.leaving.get(0).t;
+//		System.out.println(t);
+//
+//		SPGraph subGraph = g.generateSubGraphFromVertices(s, t);
 
-		Vertex t = s.leaving.get(3).t;
-		System.out.println(t);
-		t = t.leaving.get(0).t;
-		System.out.println(t);
-		t = t.leaving.get(0).t;
-		System.out.println(t);
-		t = t.leaving.get(0).t;
-		System.out.println(t);
-
-		SPGraph subGraph = g.GenerateSubGraphFromVertices(s, t);
+		List<Vertex> vertices = g.getVertices();
+        List<Agent> agents = new ArrayList<>();
+        for (int i = 0;i< 10; i++) {
+            agents.add(Agent.randomizeAgent(g, vertices));
+        }
+        System.out.println(vertices);
+        System.out.println(agents);
 
 //		new SPGraphFrame(subGraph);
 
@@ -97,7 +108,7 @@ public class Main {
 		new SPGraphFrame(g1);
 
 		// test sub graph generation
-		SPGraph subGraph = g1.GenerateSubGraphFromVertices(v[8], v[4]);
+		SPGraph subGraph = g1.generateSubGraphFromVertices(v[8], v[4]);
 
 		new SPGraphFrame(subGraph);
 
@@ -107,7 +118,7 @@ public class Main {
 		}
 		System.out.println();
 
-		subGraph = g1.GenerateSubGraphFromVertices(v[0], v[4]);
+		subGraph = g1.generateSubGraphFromVertices(v[0], v[4]);
 
 		path = subGraph.solve();
 		for (Edge edge : path.edges) {
@@ -116,17 +127,17 @@ public class Main {
 		System.out.println();
 
 		try {
-			subGraph = g1.GenerateSubGraphFromVertices(v[7], v[3]);
+			subGraph = g1.generateSubGraphFromVertices(v[7], v[3]);
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + " - as expected");
 		}
 		try {
-			subGraph = g1.GenerateSubGraphFromVertices(v[8], v[6]);
+			subGraph = g1.generateSubGraphFromVertices(v[8], v[6]);
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + " - as expected");
 		}
 		try {
-			subGraph = g1.GenerateSubGraphFromVertices(v[3], v[1]);
+			subGraph = g1.generateSubGraphFromVertices(v[3], v[1]);
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + " - as expected");
 		}
