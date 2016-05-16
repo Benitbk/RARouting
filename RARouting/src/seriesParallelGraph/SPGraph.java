@@ -17,7 +17,7 @@ public abstract class SPGraph implements Serializable {
 	Vertex s;
 	Vertex t;
 
-	public abstract Path solve();
+	public abstract Route solve();
 
 	protected abstract SubSPGraph generateSubGraphFromVerticesRecursive(
 			Vertex s, Vertex t);

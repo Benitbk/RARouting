@@ -112,16 +112,16 @@ public class Main {
 
 		new SPGraphFrame(subGraph);
 
-		Path path = subGraph.solve();
-		for (Edge edge : path.edges) {
+		Route route = subGraph.solve();
+		for (Edge edge : route.edges) {
 			System.out.print(edge.id + ", ");
 		}
 		System.out.println();
 
 		subGraph = g1.generateSubGraphFromVertices(v[0], v[4]);
 
-		path = subGraph.solve();
-		for (Edge edge : path.edges) {
+		route = subGraph.solve();
+		for (Edge edge : route.edges) {
 			System.out.print(edge.id + ", ");
 		}
 		System.out.println();

@@ -58,13 +58,13 @@ public class ParallelGraph extends SPGraph {
 	}
 
 	@Override
-	public Path solve() {
-		Path path1 = g1.solve();
-		Path path2 = g2.solve();
+	public Route solve() {
+		Route route1 = g1.solve();
+		Route route2 = g2.solve();
 
-		if (path1.newCost() < path2.newCost())
-			return path1;
-		return path2;
+		if (route1.newCost() < route2.newCost())
+			return route1;
+		return route2;
 	}
 
 	@Override

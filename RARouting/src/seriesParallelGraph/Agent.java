@@ -10,12 +10,12 @@ public class Agent {
     public final Vertex source;
     public final Vertex destination;
     public static long currentId = 0;
-    public Path path;
+    public Route route;
     public Agent(Vertex source, Vertex destination) {
         this.id = currentId++;
         this.source = source;
         this.destination = destination;
-        path = new Path();
+        route = new Route();
     }
 
     @Override

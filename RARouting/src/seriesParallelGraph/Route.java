@@ -3,16 +3,16 @@ package seriesParallelGraph;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Path {
+public class Route {
 
 	List<Edge> edges;
 
-	public Path(Edge edge) {
+	public Route(Edge edge) {
 		this();
 		edges.add(edge);
 	}
 
-	public Path() {
+	public Route() {
 		this.edges = new ArrayList<>();
 	}
 

@@ -28,8 +28,8 @@ public class Edge extends SPGraph {
 	int agents;
 
 	@Override
-	public Path solve() {
-		return new Path(this);
+	public Route solve() {
+		return new Route(this);
 	}
 
 	@Override

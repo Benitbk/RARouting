@@ -42,10 +42,10 @@ public class SeriesGraph extends SPGraph {
 	}
 
 	@Override
-	public Path solve() {
-		Path path = g1.solve();
-		path.edges.addAll(g2.solve().edges);
-		return path;
+	public Route solve() {
+		Route route = g1.solve();
+		route.edges.addAll(g2.solve().edges);
+		return route;
 	}
 
 	@Override
