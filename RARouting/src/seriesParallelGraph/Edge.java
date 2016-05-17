@@ -10,12 +10,14 @@ public class Edge extends SPGraph {
 	 * 
 	 */
 	private static final long serialVersionUID = 8702323950488821703L;
-	
+
 	int id;
 
-	public Edge(int id, Vertex s, Vertex t, double cost) {
+	static int nextId = 0;
+
+	public Edge(Vertex s, Vertex t, double cost) {
 		super();
-		this.id = id;
+		this.id = nextId++;
 		this.s = s;
 		this.t = t;
 		this.cost = cost;
@@ -63,7 +65,7 @@ public class Edge extends SPGraph {
 
 	@Override
 	public String toString() {
-		return s.toString() + ">" + t.toString();
+		return "(" + s.toString() + "," + t.toString() + ")";
 	}
 
 }

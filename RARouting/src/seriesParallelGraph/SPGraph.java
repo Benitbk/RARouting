@@ -75,7 +75,7 @@ public abstract class SPGraph implements Serializable {
 		Random random = new Random();
 		List<SPGraph> graphs = new ArrayList<SPGraph>();
 		for (int i = 0; i < size; i++) {
-			graphs.add(new Edge(i, new Vertex(), new Vertex(), random
+			graphs.add(new Edge(new Vertex(), new Vertex(), random
 					.nextInt(maxEdgeCost)));
 		}
 
@@ -120,12 +120,11 @@ public abstract class SPGraph implements Serializable {
 		return g;
 	}
 
-    public List<Vertex> getVertices()
-    {
-        List<Vertex> result = new ArrayList();
-        result.addAll(this.getVerticesRecursive());
-        return result;
-    }
+	public List<Vertex> getVertices() {
+		List<Vertex> result = new ArrayList<Vertex>();
+		result.addAll(this.getVerticesRecursive());
+		return result;
+	}
 
-    public abstract Set<Vertex> getVerticesRecursive();
+	public abstract Set<Vertex> getVerticesRecursive();
 }

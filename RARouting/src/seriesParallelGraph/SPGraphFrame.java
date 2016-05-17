@@ -23,7 +23,7 @@ public class SPGraphFrame extends JFrame {
 	Map<Vertex, Point> vertexLocations;
 
 	Point offset = new Point(1, 1);
-	Point grid = new Point(40, 40);
+	Point grid = new Point(30, 30);
 
 	Point scale = new Point(2, 1.2f);
 
@@ -37,7 +37,7 @@ public class SPGraphFrame extends JFrame {
 
 		Set<Entry<Vertex, Point>> vertsSet = vertexLocations.entrySet();
 		for (Entry<Vertex, Point> entry : vertsSet) {
-//			System.out.println(entry);
+			// System.out.println(entry);
 			// Vertex v = entry.getKey();
 			Point p = entry.getValue();
 			p.x *= scale.x;
@@ -113,12 +113,19 @@ public class SPGraphFrame extends JFrame {
 
 			// draw the lines
 			Point lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
-					+ grid.y / (destinations.size() + 1));
+					+ grid.y / 2);
+
+			// to make parallel edges visible
+			// Point lineSource = new Point(vertexLoc.x + grid.x / 2,
+			// vertexLoc.y
+			// + grid.y / (destinations.size() + 1));
+
 			for (Point dest : destinations) {
 				g.drawLine((int) lineSource.x, (int) lineSource.y,
 						(int) dest.x, (int) dest.y);
 
-				lineSource.y += grid.y / (destinations.size() + 1);
+				// to make parallel edges visible
+				// lineSource.y += grid.y / (destinations.size() + 1);
 			}
 		}
 

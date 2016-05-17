@@ -7,45 +7,48 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		SPGraph g = SPGraph.randomizeGraph(50, 50);
-//		SPGraph g = null;
-//		try {
-//			g = SPGraph.read("last graph");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		SPGraph g = SPGraph.randomizeGraph(25, 10);
+		// SPGraph g = null;
+		// try {
+		// g = SPGraph.read("last graph");
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
 		new SPGraphFrame(g);
-//		SPGraph h = ((ParallelGraph) g).getG1();
-//		new SPGraphFrame(h);
-//		h = ((ParallelGraph) h).g2;
-//		new SPGraphFrame(h);
-//		SPGraph h2 = ((ParallelGraph) h).g2;
-//		new SPGraphFrame(h2);
-
-//		Vertex s = g.s;
-		// s = s.leaving.get(0).t;
-//		System.out.println(s);
-//
-//		Vertex t = s.leaving.get(3).t;
-//		System.out.println(t);
-//		t = t.leaving.get(0).t;
-//		System.out.println(t);
-//		t = t.leaving.get(0).t;
-//		System.out.println(t);
-//		t = t.leaving.get(0).t;
-//		System.out.println(t);
-//
-//		SPGraph subGraph = g.generateSubGraphFromVertices(s, t);
 
 		List<Vertex> vertices = g.getVertices();
-        List<Agent> agents = new ArrayList<>();
-        for (int i = 0;i< 10; i++) {
-            agents.add(Agent.randomizeAgent(g, vertices));
-        }
-        System.out.println(vertices);
-        System.out.println(agents);
+		List<Agent> agents = new ArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			agents.add(Agent.randomizeAgent(g, vertices));
+		}
+		System.out.println(vertices);
+		System.out.println(agents);
 
-//		new SPGraphFrame(subGraph);
+		System.out.println("Agent\tRoute\tCost\tSocial Cost");
+		boolean improved = false; // has anybody improved
+		double socialCost = 0;
+		do {
+			improved = false;
+			for (Agent agent : agents) {
+				Route oldRoute = agent.getRoute();
+				socialCost += agent.setRoute(null);
+				Route newRoute = g.generateSubGraphFromVertices(agent.source,
+						agent.destination).solve();
+
+				double newCost = newRoute.newCost();
+				if (oldRoute == null || oldRoute.newCost() > newCost) {
+					improved = true;
+
+					socialCost += agent.setRoute(newRoute);
+					System.out.println("" + agent.id + "\t" + newRoute + "\t"
+							+ newCost + "\t" + socialCost);
+				} else
+					socialCost += agent.setRoute(oldRoute);
+
+			}
+		} while (improved);
+
+		// new SPGraphFrame(subGraph);
 
 		// test();
 
@@ -59,23 +62,23 @@ public class Main {
 
 		// create edges
 		Edge[] edges = new Edge[17];
-		edges[0] = new Edge(0, v[0], v[1], 1);
-		edges[1] = new Edge(1, v[1], v[2], 1);
-		edges[2] = new Edge(2, v[2], v[3], 2);
-		edges[3] = new Edge(3, v[3], v[4], 1);
-		edges[4] = new Edge(4, v[1], v[5], 1);
-		edges[5] = new Edge(5, v[5], v[6], 3);
-		edges[6] = new Edge(6, v[6], v[4], 1);
-		edges[7] = new Edge(7, v[0], v[7], 2);
-		edges[8] = new Edge(8, v[7], v[4], 5);
-		edges[9] = new Edge(9, v[0], v[8], 2);
-		edges[10] = new Edge(10, v[8], v[9], 1);
-		edges[11] = new Edge(11, v[9], v[10], 2);
-		edges[12] = new Edge(12, v[10], v[11], 2);
-		edges[13] = new Edge(13, v[11], v[4], 3);
-		edges[14] = new Edge(14, v[8], v[10], 4);
-		edges[15] = new Edge(15, v[8], v[12], 1);
-		edges[16] = new Edge(16, v[12], v[10], 1);
+		edges[0] = new Edge(v[0], v[1], 1);
+		edges[1] = new Edge(v[1], v[2], 1);
+		edges[2] = new Edge(v[2], v[3], 2);
+		edges[3] = new Edge(v[3], v[4], 1);
+		edges[4] = new Edge(v[1], v[5], 1);
+		edges[5] = new Edge(v[5], v[6], 3);
+		edges[6] = new Edge(v[6], v[4], 1);
+		edges[7] = new Edge(v[0], v[7], 2);
+		edges[8] = new Edge(v[7], v[4], 5);
+		edges[9] = new Edge(v[0], v[8], 2);
+		edges[10] = new Edge(v[8], v[9], 1);
+		edges[11] = new Edge(v[9], v[10], 2);
+		edges[12] = new Edge(v[10], v[11], 2);
+		edges[13] = new Edge(v[11], v[4], 3);
+		edges[14] = new Edge(v[8], v[10], 4);
+		edges[15] = new Edge(v[8], v[12], 1);
+		edges[16] = new Edge(v[12], v[10], 1);
 
 		// create graph
 		SPGraph g1 = new SeriesGraph(edges[1], edges[2]);

@@ -31,4 +31,21 @@ public class Route {
 
 		return cost;
 	}
+
+	public double socailCost() {
+		double cost = 0;
+		for (Edge edge : edges)
+			cost += edge.cost;
+
+		return cost;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Edge edge : edges) {
+			sb.append(edge).append("->");
+		}
+		return sb.toString();
+	}
 }
