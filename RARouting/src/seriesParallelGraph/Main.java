@@ -3,22 +3,24 @@ package seriesParallelGraph;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 public class Main {
 
 	public static void main(String[] args) {
 
-		SPGraph g = SPGraph.randomizeGraph(25, 10);
+		SPGraph g = SPGraph.randomizeGraph(10, 10);
 		// SPGraph g = null;
 		// try {
 		// g = SPGraph.read("last graph");
 		// } catch (Exception e) {
 		// e.printStackTrace();
 		// }
-		new SPGraphFrame(g);
+		showSPGraph(g);
 
 		List<Vertex> vertices = g.getVertices();
 		List<Agent> agents = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 50; i++) {
 			agents.add(Agent.randomizeAgent(g, vertices));
 		}
 		System.out.println(vertices);
@@ -48,10 +50,18 @@ public class Main {
 			}
 		} while (improved);
 
-		// new SPGraphFrame(subGraph);
+		// showSPGraph(g);
 
 		// test();
 
+	}
+
+	public static void showSPGraph(SPGraph g) {
+		JFrame frame = new JFrame();
+		frame.add(new SPGraphPanel(g));
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
 	}
 
 	public static void test() {
@@ -108,12 +118,12 @@ public class Main {
 		System.out.println("length: " + g1.getLength());
 		System.out.println("width: " + g1.getWidth());
 
-		new SPGraphFrame(g1);
+		showSPGraph(g1);
 
 		// test sub graph generation
 		SPGraph subGraph = g1.generateSubGraphFromVertices(v[8], v[4]);
 
-		new SPGraphFrame(subGraph);
+		showSPGraph(subGraph);
 
 		Route route = subGraph.solve();
 		for (Edge edge : route.edges) {
