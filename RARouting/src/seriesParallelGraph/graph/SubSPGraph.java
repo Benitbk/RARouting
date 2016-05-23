@@ -1,4 +1,4 @@
-package seriesParallelGraph;
+package seriesParallelGraph.graph;
 
 
 /**

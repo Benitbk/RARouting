@@ -1,4 +1,9 @@
-package seriesParallelGraph;
+package seriesParallelGraph.agent;
+
+import seriesParallelGraph.graph.Route;
+import seriesParallelGraph.graph.Edge;
+import seriesParallelGraph.graph.SPGraph;
+import seriesParallelGraph.graph.Vertex;
 
 import java.util.*;
 

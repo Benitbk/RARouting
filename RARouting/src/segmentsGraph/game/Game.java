@@ -28,7 +28,7 @@ public class Game {
         }
 
         sb.append("********************\n");
-        sb.append("The Graph combined from segments: \n");
+        sb.append("The graph combined from segments: \n");
         sb.append(graph.toString());
 
         return sb.toString();
