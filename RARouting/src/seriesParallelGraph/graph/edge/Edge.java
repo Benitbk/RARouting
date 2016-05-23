@@ -69,6 +69,13 @@ public abstract class Edge extends SPGraph {
 	}
 
 	@Override
+	public Route generateRandomRoute()
+	{
+		return new Route(this);
+	}
+
+
+	@Override
 	public String toString() {
 		return "(" + s.toString() + "," + t.toString() + ")";
 	}

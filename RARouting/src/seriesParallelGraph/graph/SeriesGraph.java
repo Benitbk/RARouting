@@ -50,6 +50,15 @@ public class SeriesGraph extends SPGraph {
 	}
 
 	@Override
+	public Route generateRandomRoute()
+	{
+		Route route1 = g1.generateRandomRoute();
+		Route route2 = g2.generateRandomRoute();
+		route1.edges.addAll(route2.edges);
+		return route1;
+	}
+
+	@Override
 	public SubSPGraph generateSubGraphFromVerticesRecursive(Vertex s, Vertex t) {
 		SubSPGraph subG1Graph = g1.generateSubGraphFromVerticesRecursive(s, t);
 		SubSPGraph subG2Graph = g2.generateSubGraphFromVerticesRecursive(s, t);

@@ -69,6 +69,21 @@ public class ParallelGraph extends SPGraph {
 	}
 
 	@Override
+	public Route generateRandomRoute()
+	{
+		int coin = new Random().nextInt(2);
+
+		if (coin == 0)
+		{
+			return g1.generateRandomRoute();
+		}
+		else
+		{
+			return g2.generateRandomRoute();
+		}
+	}
+
+	@Override
 	public SubSPGraph generateSubGraphFromVerticesRecursive(Vertex s, Vertex t) {
 		SubSPGraph subG1Graph = g1.generateSubGraphFromVerticesRecursive(s, t);
 		SubSPGraph subG2Graph = g2.generateSubGraphFromVerticesRecursive(s, t);

@@ -116,6 +116,8 @@ public abstract class SPGraph implements Serializable {
 		return graphs.get(0);
 	}
 
+	public abstract  Route generateRandomRoute();
+
 	public static SPGraph read(String name) throws Exception {
 		// read object from file
 		FileInputStream fis = new FileInputStream(name);

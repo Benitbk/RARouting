@@ -15,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		SPGraph g = SPGraph.randomizeGraph(5, 10);
+		SPGraph g = SPGraph.randomizeGraph(50, 10);
 
 		// SPGraph g = null;
 		// try {
@@ -27,9 +27,29 @@ public class Main {
 
 		List<Vertex> vertices = g.getVertices();
 		List<Agent> agents = new ArrayList<>();
-		for (int i = 0; i < 5; i++) {
-			agents.add(Agent.randomizeAgent(g, vertices));
+		for (int i = 0; i < 5; i++)
+		{
+			Agent agent = Agent.randomizeAgent(g, vertices);
+			SPGraph graph = g.generateSubGraphFromVertices(agent.source,agent.destination);
+			agent.setRoute(graph.generateRandomRoute());
+			agents.add(agent);
 		}
+
+		System.out.println("Agent\tRoute\tCost\tSocial Cost");
+		for (int i = 0; i < 5; i++) {
+
+			//Todo:
+			// Get SPGraph s,t
+			// Add abstract method get random path (spgraph) and impllement in seriesgraph, parlel graph and edge
+			// series : מחזיר שרשור של  g1,g2
+			// LISToFedges.addAll(edges of second)
+			// paralel: return 1 graph.
+
+			Agent currAgent = agents.get(i);
+			System.out.println("" + currAgent.id + "\t" + currAgent.getRoute() + "\t"
+					+ currAgent.getRoute().costForSingleAgent());
+		}
+
 		System.out.println(vertices);
 		System.out.println(agents);
         System.out.println(g.getEdges());
