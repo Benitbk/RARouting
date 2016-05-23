@@ -35,7 +35,7 @@ public class Main {
 			agents.add(agent);
 		}
 
-		System.out.println("Agent\tRoute\tCost\tSocial Cost");
+		System.out.println("Agent\tRoute\tCost");
 		for (int i = 0; i < 5; i++) {
 
 			Agent currAgent = agents.get(i);

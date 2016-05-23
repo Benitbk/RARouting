@@ -12,6 +12,7 @@ import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -36,7 +37,6 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 	public SPGraphPanel(SPGraph g) {
 		super();
 		this.g = g;
-
 
 		vertexLocations = g.locate(g.getLength(), g.getWidth());
 
@@ -91,9 +91,10 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 			List<Edge> edges = v.leaving;
 
 			// draw edges leaving v
-			g.setColor(new Color(new Random().nextInt(0xFFFFFF) / 2));
+			Color randColor = new Color(new Random().nextInt(0xFFFFFF) / 2);
+
 			// calculate the lines destinations
-			List<Point> destinations = new ArrayList<Point>();
+			Map<Edge, Point> destinations = new HashMap<Edge, Point>();
 			for (Edge e : edges) {
 				Point v2Point = vertexLocations.get(e.t);
 				if (v2Point == null)
@@ -102,13 +103,14 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 						(v2Point.y + offset.y) * grid.y);
 				v2Loc.x += grid.x / 2;
 				v2Loc.y += grid.y / 2;
-				destinations.add(new Point(v2Loc.x, v2Loc.y));
+				destinations.put(e, new Point(v2Loc.x, v2Loc.y));
 			}
 			// sort the lines by angel from v
-			Collections.sort(destinations, new Comparator<Point>() {
+			Collections.sort(edges, new Comparator<Edge>() {
 				@Override
-				public int compare(Point p1, Point p2) {
-					// System.out.println(v);
+				public int compare(Edge e1, Edge e2) {
+					Point p1 = destinations.get(e1);
+					Point p2 = destinations.get(e2);
 					Double p1Direction = Math.atan((p1.y - vertexCenter.y)
 							/ (p1.x - vertexCenter.x));
 					Double p2Direction = Math.atan((p2.y - vertexCenter.y)
@@ -118,20 +120,37 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 			});
 
 			// draw the lines
-//			Point lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
-//					+ grid.y / 2);
+			// Point lineSource = new Point(vertexLoc.x + grid.x / 2,
+			// vertexLoc.y
+			// + grid.y / 2);
 
 			// to make parallel edges visible
-			 Point lineSource = new Point(vertexLoc.x + grid.x / 2,
-			 vertexLoc.y
-			 + grid.y / (destinations.size() + 1));
+			Point lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
+					+ grid.y / (destinations.size() + 1));
 
-			for (Point dest : destinations) {
+			int i = 0;
+			for (Edge e : edges) {
+				g.setColor(randColor);
+				Point dest = destinations.get(e);
 				g.drawLine((int) lineSource.x, (int) lineSource.y,
 						(int) dest.x, (int) dest.y);
 
+				// draw cost
+				g.setColor(Color.BLACK);
+				String s = e.getLabel();
+				if (i == 0) {
+					g.drawString(s,
+							(int) (0.75 * lineSource.x + 0.25 * dest.x),
+							(int) (0.75 * lineSource.y + 0.25 * dest.y));
+				} else {
+					g.drawString(s, (int) (0.7 * lineSource.x + 0.3 * dest.x),
+							(int) (0.7 * lineSource.y + 0.3 * dest.y));
+				}
+
 				// to make parallel edges visible
-				 lineSource.y += grid.y / (destinations.size() + 1);
+				lineSource.y += grid.y / (destinations.size() + 1);
+
+				i = 1 - i;
 			}
 		}
 

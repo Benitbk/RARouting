@@ -89,4 +89,8 @@ public abstract class Edge extends SPGraph {
         return cost;
     }
 
+	public String getLabel() {
+		return "" + load;
+	}
+
 }
