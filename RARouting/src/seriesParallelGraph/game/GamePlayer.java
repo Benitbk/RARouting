@@ -20,7 +20,7 @@ public class GamePlayer {
 
 	public void start()
     {
-		System.out.println("Agent\tRoute\tCost\tSocial Cost");
+		System.out.println("Agent\tRoute\tCost\tOld Cost\tSocial Cost");
 		//double socialCost = 0;
 
 		while(true){
@@ -32,8 +32,9 @@ public class GamePlayer {
 			else
 			{
 				Route improvedRoute = this.gameState.getImprovedRoute(nextAgent);
+                double oldCost = nextAgent.getRoute().cost();
 				nextAgent.setRoute(improvedRoute);
-                System.out.println();
+                System.out.println(nextAgent.toStringEx() +"\t"+oldCost );
 			}
 		}
 

@@ -30,6 +30,6 @@ public class LinearNegativeCongestionEdge extends Edge {
 
 	@Override
 	public String getLabel() {
-		return "" + factor;
+		return "" + factor + "/" + this.load;
 	}
 }

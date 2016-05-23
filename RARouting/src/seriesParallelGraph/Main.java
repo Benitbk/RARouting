@@ -1,25 +1,37 @@
 package seriesParallelGraph;
 
+import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.game.GameState;
 import seriesParallelGraph.graph.*;
 import seriesParallelGraph.game.Game;
 import seriesParallelGraph.game.GamePlayer;
+import seriesParallelGraph.graph.edge.EdgeKind;
 import seriesParallelGraph.graph.panel.SPGraphPanel;
 import seriesParallelGraph.policies.AgentIncreasingPolicy;
 
 import javax.swing.JFrame;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
 	public static void main(String[] args) {
+        Map<Agent, Route> oldRoutes = new HashMap<>();
 
-
-
-        Game game = Game.randomizeGame(10, 10, 5);
+        Game game = Game.randomizeGame(100, 10, 50, 0.6, EdgeKind.LinearNegativeCongestion, true);
+        for(Agent agent : game.agents)
+        {
+            oldRoutes.put(agent, agent.getRoute());
+        }
         showSPGraph(game.graph);
         GameState gameState = new GameState(game);
         GamePlayer gamePlayer = new GamePlayer(gameState, new AgentIncreasingPolicy(gameState));
         gamePlayer.start();
+        System.out.println("finished");
+        for(Agent agent:oldRoutes.keySet()) {
+            System.out.print(agent.id + "\t");
+            System.out.println(oldRoutes.get(agent));
+        }
 
 		// showSPGraph(g);
 
@@ -27,7 +39,7 @@ public class Main {
 
 	}
 
-	public static void showSPGraph(SPGraph g) {
+	private static void showSPGraph(SPGraph g) {
 		JFrame frame = new JFrame();
 		frame.add(new SPGraphPanel(g));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

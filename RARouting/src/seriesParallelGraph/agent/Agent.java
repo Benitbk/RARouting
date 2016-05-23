@@ -12,8 +12,8 @@ import java.util.*;
  */
 public class Agent {
 	public final long id;
-	public final Vertex source;
-	public final Vertex destination;
+	public Vertex source;
+	public Vertex destination;
 	public static long currentId = 0;
 	private Route route;
 
@@ -29,7 +29,13 @@ public class Agent {
 				.toString());
 	}
 
+	public String toStringEx() {
+		return this.id + "\t" + this.getRoute()
+				+ "\t" + this.getRoute().cost();
+	}
+
 	public static Agent randomizeAgent(SPGraph graph, List<Vertex> vertices) {
+
 		Random random = new Random();
 		Vertex v1 = vertices.get(random.nextInt(vertices.size()));
 		List<Vertex> reachableVertices = new ArrayList<>();

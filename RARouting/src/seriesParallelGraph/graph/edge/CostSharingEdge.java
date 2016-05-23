@@ -31,7 +31,7 @@ public class CostSharingEdge extends Edge {
 
 	@Override
 	public String getLabel() {
-		return "" + cost;
+		return "" + cost + "/" + this.load;
 	}
 
 }
