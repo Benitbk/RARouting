@@ -3,6 +3,8 @@ package seriesParallelGraph;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,31 +15,31 @@ import java.util.Random;
 import java.util.Set;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 // FIXME fix bug where an edge from g.s to g.t is drawn even when it is not
 // part of g (it is connected to g in parallel)
 @SuppressWarnings("serial")
-public class SPGraphFrame extends JFrame {
+public class SPGraphPanel extends JPanel implements MouseWheelListener {
 
 	SPGraph g;
 	Map<Vertex, Point> vertexLocations;
 
 	Point offset = new Point(1, 1);
-	Point grid = new Point(40, 40);
+	Point grid = new Point(25, 25);
 
 	Point scale = new Point(2, 1.2f);
 
-	public SPGraphFrame(SPGraph g) {
+	public SPGraphPanel(SPGraph g) {
 		super();
 		this.g = g;
 
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		vertexLocations = g.locate(g.getLength(), g.getWidth());
 
 		Set<Entry<Vertex, Point>> vertsSet = vertexLocations.entrySet();
 		for (Entry<Vertex, Point> entry : vertsSet) {
-			System.out.println(entry);
+			// System.out.println(entry);
 			// Vertex v = entry.getKey();
 			Point p = entry.getValue();
 			p.x *= scale.x;
@@ -46,8 +48,9 @@ public class SPGraphFrame extends JFrame {
 
 		this.setSize((int) ((g.getLength() + offset.x + 1) * scale.x * grid.x),
 				(int) ((g.getWidth() + offset.y + 1) * scale.y * grid.y));
+		this.setPreferredSize(getSize());
 
-		this.setVisible(true);
+		this.addMouseWheelListener(this);
 
 	}
 
@@ -113,12 +116,19 @@ public class SPGraphFrame extends JFrame {
 
 			// draw the lines
 			Point lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
-					+ grid.y / (destinations.size() + 1));
+					+ grid.y / 2);
+
+			// to make parallel edges visible
+			// Point lineSource = new Point(vertexLoc.x + grid.x / 2,
+			// vertexLoc.y
+			// + grid.y / (destinations.size() + 1));
+
 			for (Point dest : destinations) {
 				g.drawLine((int) lineSource.x, (int) lineSource.y,
 						(int) dest.x, (int) dest.y);
 
-				lineSource.y += grid.y / (destinations.size() + 1);
+				// to make parallel edges visible
+				// lineSource.y += grid.y / (destinations.size() + 1);
 			}
 		}
 
@@ -134,5 +144,12 @@ public class SPGraphFrame extends JFrame {
 			g.drawString("" + v.id, (int) (vertexLoc.x + grid.x / 10),
 					(int) (vertexLoc.y + 2 * grid.y / 3));
 		}
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		grid.x -= e.getWheelRotation();
+		grid.y -= e.getWheelRotation();
+		repaint();
 	}
 }

@@ -1,6 +1,8 @@
 package seriesParallelGraph;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Edge extends SPGraph {
 
@@ -8,12 +10,14 @@ public class Edge extends SPGraph {
 	 * 
 	 */
 	private static final long serialVersionUID = 8702323950488821703L;
-	
+
 	int id;
 
-	public Edge(int id, Vertex s, Vertex t, double cost) {
+	static int nextId = 0;
+
+	public Edge(Vertex s, Vertex t, double cost) {
 		super();
-		this.id = id;
+		this.id = nextId++;
 		this.s = s;
 		this.t = t;
 		this.cost = cost;
@@ -26,12 +30,12 @@ public class Edge extends SPGraph {
 	int agents;
 
 	@Override
-	public Path solve() {
-		return new Path(this);
+	public Route solve() {
+		return new Route(this);
 	}
 
 	@Override
-	public SubSPGraph GenerateSubGraphFromVerticesRecursive(Vertex s, Vertex t) {
+	public SubSPGraph generateSubGraphFromVerticesRecursive(Vertex s, Vertex t) {
 		return new SubSPGraph(this, this.s == s, this.t == t);
 	}
 
@@ -52,8 +56,16 @@ public class Edge extends SPGraph {
 	}
 
 	@Override
+	public Set<Vertex> getVerticesRecursive() {
+		Set<Vertex> set = new HashSet<Vertex>();
+		set.add(this.s);
+		set.add(this.t);
+		return set;
+	}
+
+	@Override
 	public String toString() {
-		return s.toString() + ">" + t.toString();
+		return "(" + s.toString() + "," + t.toString() + ")";
 	}
 
 }
