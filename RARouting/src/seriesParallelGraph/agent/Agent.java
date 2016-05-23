@@ -1,7 +1,7 @@
 package seriesParallelGraph.agent;
 
 import seriesParallelGraph.graph.Route;
-import seriesParallelGraph.graph.Edge;
+import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.SPGraph;
 import seriesParallelGraph.graph.Vertex;
 
@@ -59,30 +59,16 @@ public class Agent {
 		return route;
 	}
 
-	/**
-	 * @param route
-	 * @return the change in social cost caused by changing the route
-	 */
-	public double setRoute(Route route) {
-		double socialCostChange = 0;
+
+	public void setRoute(Route route) {
 		if (this.route != null)
 			for (Edge edge : this.route.edges) {
-				edge.agents--;
-				if (edge.agents == 0) {
-					socialCostChange -= edge.cost;
-				}
+				edge.load--;
 			}
-
 		this.route = route;
-
 		if (this.route != null)
 			for (Edge edge : this.route.edges) {
-				if (edge.agents == 0) {
-					socialCostChange += edge.cost;
-				}
-				edge.agents++;
+				edge.load++;
 			}
-
-		return socialCostChange;
 	}
 }

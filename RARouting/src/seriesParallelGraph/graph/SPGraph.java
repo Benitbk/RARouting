@@ -1,5 +1,8 @@
 package seriesParallelGraph.graph;
 
+import seriesParallelGraph.graph.edge.CostSharingEdge;
+import seriesParallelGraph.graph.edge.Edge;
+import seriesParallelGraph.graph.edge.LinearNegativeCongestionEdge;
 import seriesParallelGraph.graph.panel.Point;
 
 import java.io.FileInputStream;
@@ -77,7 +80,7 @@ public abstract class SPGraph implements Serializable {
 		Random random = new Random();
 		List<SPGraph> graphs = new ArrayList<SPGraph>();
 		for (int i = 0; i < size; i++) {
-			graphs.add(new Edge(new Vertex(), new Vertex(), random
+			graphs.add(new LinearNegativeCongestionEdge(new Vertex(), new Vertex(), random
 					.nextInt(maxEdgeCost)));
 		}
 

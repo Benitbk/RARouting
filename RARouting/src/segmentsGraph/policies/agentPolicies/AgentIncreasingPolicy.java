@@ -30,7 +30,7 @@ public class AgentIncreasingPolicy extends AgentPolicy {
 			}
 		} while (i != nextAgentToPlay);
 
-		//non of the agents can improve
+		//non of the load can improve
 		return null;
 	}
 }

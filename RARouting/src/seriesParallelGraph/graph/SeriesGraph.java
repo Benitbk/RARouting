@@ -1,5 +1,6 @@
 package seriesParallelGraph.graph;
 
+import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.panel.Point;
 
 import java.security.InvalidParameterException;

@@ -1,6 +1,6 @@
 package seriesParallelGraph.graph;
 
-import seriesParallelGraph.graph.Edge;
+import seriesParallelGraph.graph.edge.Edge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,42 +18,19 @@ public class Route {
 		this.edges = new ArrayList<>();
 	}
 
-	public double cost() {
+	public double costForSingleAgent() {
 		double cost = 0;
 		for (Edge edge : edges)
-			cost += edge.cost / edge.agents;
-
+			cost += edge.getCostForSingleAgent();
 		return cost;
 	}
 
-	public double newCost() {
-		return negativeConjectionCost();
-	}
-
-
-	public double negativeConjectionCost() {
-		double cost = 0;
-		for (Edge edge : edges)
-			cost += edge.cost * (edge.agents + 1);
-
-		return cost;
-	}
-
-	public double costSharing() {
-		double cost = 0;
-		for (Edge edge : edges)
-			cost += edge.cost / (edge.agents + 1);
-
-		return cost;
-	}
-
-	public double socailCost() {
-		double cost = 0;
-		for (Edge edge : edges)
-			cost += edge.cost;
-
-		return cost;
-	}
+    public double expectedCostForSingleAgent() {
+        double cost = 0;
+        for (Edge edge : edges)
+            cost += edge.getExpectedCostForSingleAgent();
+        return cost;
+    }
 
 	@Override
 	public String toString() {

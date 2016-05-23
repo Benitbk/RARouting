@@ -1,10 +1,11 @@
-package seriesParallelGraph.graph;
+package seriesParallelGraph.graph.edge;
 
+import seriesParallelGraph.graph.*;
 import seriesParallelGraph.graph.panel.Point;
 
 import java.util.*;
 
-public class Edge extends SPGraph {
+public abstract class Edge extends SPGraph {
 
 	/**
 	 * 
@@ -15,19 +16,16 @@ public class Edge extends SPGraph {
 
 	static int nextId = 0;
 
-	public Edge(Vertex s, Vertex t, double cost) {
+	public Edge(Vertex s, Vertex t) {
 		super();
 		this.id = nextId++;
 		this.s = s;
 		this.t = t;
-		this.cost = cost;
 
 		s.leaving.add(this);
 		t.entering.add(this);
 	}
-
-	public double cost;
-	public int agents;
+	public int load;
 
 	@Override
 	public Route solve() {
@@ -72,7 +70,16 @@ public class Edge extends SPGraph {
 
 	@Override
 	public String toString() {
-		return "(" + s.toString() + "," + t.toString() + ")" + ":" + this.cost;
+		return "(" + s.toString() + "," + t.toString() + ")";
 	}
+
+    public abstract double getCostForSingleAgent();
+
+    public double getExpectedCostForSingleAgent() {
+        this.load++;
+        double cost = this.getCostForSingleAgent();
+        this.load--;
+        return cost;
+    }
 
 }
