@@ -1,5 +1,7 @@
 package seriesParallelGraph.graph;
 
+import seriesParallelGraph.graph.edge.Edge;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ public class Vertex implements Serializable {
 	private static final long serialVersionUID = 3527824038366921294L;
 
 	public List<Edge> leaving;
-	List<Edge> entering;
+	public List<Edge> entering;
 
 	public int id;
 

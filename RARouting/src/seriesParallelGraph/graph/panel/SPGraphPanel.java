@@ -1,6 +1,6 @@
 package seriesParallelGraph.graph.panel;
 
-import seriesParallelGraph.graph.Edge;
+import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.SPGraph;
 import seriesParallelGraph.graph.Vertex;
 

@@ -1,5 +1,6 @@
 package seriesParallelGraph.graph;
 
+import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.panel.Point;
 
 import java.security.InvalidParameterException;
@@ -62,7 +63,7 @@ public class ParallelGraph extends SPGraph {
 		Route route1 = g1.solve();
 		Route route2 = g2.solve();
 
-		if (route1.newCost() < route2.newCost())
+		if (route1.expectedCostForSingleAgent() < route2.expectedCostForSingleAgent())
 			return route1;
 		return route2;
 	}

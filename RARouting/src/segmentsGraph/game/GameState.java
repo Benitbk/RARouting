@@ -63,7 +63,7 @@ public class GameState {
 		while (currentSegment.s != agent.destination) {
 			currentEdge = routeEdgesIterator.next();
 
-			// The cost the segmentsGraph.agent currently pay on this segment
+			// The costForSingleAgent the segmentsGraph.agent currently pay on this segment
 			double currentCost = currentEdge.cost
 					/ this.getNumberOfAgentsOnEdge(currentEdge);
 
@@ -73,7 +73,7 @@ public class GameState {
 
 				Integer edgeLoad = this.getNumberOfAgentsOnEdge(edge);
 
-				// The cost the segmentsGraph.agent will pay if he/she moves to that edge
+				// The costForSingleAgent the segmentsGraph.agent will pay if he/she moves to that edge
 				double sharedCost = edge.cost / (edgeLoad + 1);
 
 				if (sharedCost < currentCost) {
