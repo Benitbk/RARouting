@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9f274b3-b51b-4b59-9cd3-c09e6154aa11" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/CostSharingEdge.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/LinearNegativeCongestionEdge.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/Edge.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/Edge.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Tests.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/segmentsGraph/game/GameState.java" afterPath="$PROJECT_DIR$/RARouting/src/segmentsGraph/game/GameState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/segmentsGraph/policies/agentPolicies/AgentIncreasingPolicy.java" afterPath="$PROJECT_DIR$/RARouting/src/segmentsGraph/policies/agentPolicies/AgentIncreasingPolicy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Main.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/agent/Agent.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/agent/Agent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/ParallelGraph.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/ParallelGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/Route.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/Route.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/SPGraph.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/SPGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/SeriesGraph.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/SeriesGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/Vertex.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/Vertex.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/panel/SPGraphPanel.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/panel/SPGraphPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/LinearNegativeCongestionEdge.java" afterPath="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/LinearNegativeCongestionEdge.java" />
     </list>
     <ignored path="RARouting.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +32,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SPGraph.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SPGraph.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/SPGraph.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="237">
@@ -60,9 +49,48 @@
       <file leaf-file-name="LinearNegativeCongestionEdge.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/LinearNegativeCongestionEdge.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
+              <folding>
+                <element signature="e#483#484#0" expanded="true" />
+                <element signature="e#543#544#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tests.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Tests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vertex.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/Vertex.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-              <folding />
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,7 +115,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/RA Routing/src/Main.java" />
         <option value="$PROJECT_DIR$/RA Routing/src/game/RoutingPolicy.java" />
         <option value="$PROJECT_DIR$/RA Routing/src/interfaces/RoutingPolicy.java" />
         <option value="$PROJECT_DIR$/RARouting/src/interfaces/AgentPolicy.java" />
@@ -134,10 +161,11 @@
         <option value="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/Edge.java" />
         <option value="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/Route.java" />
         <option value="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/ParallelGraph.java" />
-        <option value="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Main.java" />
         <option value="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/CostSharingEdge.java" />
         <option value="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/SPGraph.java" />
         <option value="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/LinearNegativeCongestionEdge.java" />
+        <option value="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Tests.java" />
+        <option value="$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Main.java" />
       </list>
     </option>
   </component>
@@ -217,54 +245,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="seriesParallelGraph" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RARouting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RARouting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seriesParallelGraph" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graph" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RARouting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RARouting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seriesParallelGraph" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graph" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edge" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -829,7 +809,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464012106979</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Refactor edge cost calculation">
+      <created>1464014713347</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1464014713347</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -891,7 +878,8 @@
     <MESSAGE value="Agent randomization" />
     <MESSAGE value="Added negative cost effect. Print edges with costs." />
     <MESSAGE value="Refactor&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor&#10;" />
+    <MESSAGE value="Refactor edge cost calculation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor edge cost calculation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -904,14 +892,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/RARouting/src/segmentsGraph/graph/Edge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RARouting/src/segmentsGraph/policies/routingPolicies/RoutingMinimalCurrentCostPolicy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1206,26 +1186,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/Vertex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/CostSharingEdge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1303,14 +1263,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/LinearNegativeCongestionEdge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/SPGraph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -1319,6 +1271,47 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1748#1763#0" expanded="true" />
             <element signature="e#2107#2116#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/edge/LinearNegativeCongestionEdge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
+          <folding>
+            <element signature="e#483#484#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/graph/Vertex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RARouting/src/seriesParallelGraph/Tests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
