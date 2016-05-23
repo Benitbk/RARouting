@@ -1,9 +1,7 @@
 package seriesParallelGraph;
 
 import java.security.InvalidParameterException;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class ParallelGraph extends SPGraph {
 
@@ -147,5 +145,13 @@ public class ParallelGraph extends SPGraph {
         set.addAll(this.g1.getVerticesRecursive());
         set.addAll(this.g2.getVerticesRecursive());
         return set;
+    }
+
+    @Override
+    public List<Edge> getEdgesRecursive() {
+        List<Edge> edges = new ArrayList<Edge>();
+        edges.addAll(this.g1.getEdgesRecursive());
+        edges.addAll(this.g2.getEdgesRecursive());
+        return edges;
     }
 }

@@ -115,20 +115,20 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 			});
 
 			// draw the lines
-			Point lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
-					+ grid.y / 2);
+//			Point lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
+//					+ grid.y / 2);
 
 			// to make parallel edges visible
-			// Point lineSource = new Point(vertexLoc.x + grid.x / 2,
-			// vertexLoc.y
-			// + grid.y / (destinations.size() + 1));
+			 Point lineSource = new Point(vertexLoc.x + grid.x / 2,
+			 vertexLoc.y
+			 + grid.y / (destinations.size() + 1));
 
 			for (Point dest : destinations) {
 				g.drawLine((int) lineSource.x, (int) lineSource.y,
 						(int) dest.x, (int) dest.y);
 
 				// to make parallel edges visible
-				// lineSource.y += grid.y / (destinations.size() + 1);
+				 lineSource.y += grid.y / (destinations.size() + 1);
 			}
 		}
 
