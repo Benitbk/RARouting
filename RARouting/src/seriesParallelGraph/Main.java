@@ -7,9 +7,15 @@ import javax.swing.JFrame;
 
 public class Main {
 
+
+//    public static SPGraph generateGraph() {
+//
+//    }
+
 	public static void main(String[] args) {
 
-		SPGraph g = SPGraph.randomizeGraph(10, 10);
+		SPGraph g = SPGraph.randomizeGraph(5, 10);
+
 		// SPGraph g = null;
 		// try {
 		// g = SPGraph.read("last graph");
@@ -20,11 +26,12 @@ public class Main {
 
 		List<Vertex> vertices = g.getVertices();
 		List<Agent> agents = new ArrayList<>();
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 5; i++) {
 			agents.add(Agent.randomizeAgent(g, vertices));
 		}
 		System.out.println(vertices);
 		System.out.println(agents);
+        System.out.println(g.getEdges());
 
 		System.out.println("Agent\tRoute\tCost\tSocial Cost");
 		boolean improved = false; // has anybody improved
@@ -46,7 +53,6 @@ public class Main {
 							+ newCost + "\t" + socialCost);
 				} else
 					socialCost += agent.setRoute(oldRoute);
-
 			}
 		} while (improved);
 

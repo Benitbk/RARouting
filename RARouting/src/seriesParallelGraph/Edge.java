@@ -1,8 +1,6 @@
 package seriesParallelGraph;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Edge extends SPGraph {
 
@@ -64,8 +62,15 @@ public class Edge extends SPGraph {
 	}
 
 	@Override
+	public List<Edge> getEdgesRecursive() {
+		List<Edge> edges = new ArrayList<Edge>();
+		edges.add(this);
+		return edges;
+	}
+
+	@Override
 	public String toString() {
-		return "(" + s.toString() + "," + t.toString() + ")";
+		return "(" + s.toString() + "," + t.toString() + ")" + ":" + this.cost;
 	}
 
 }

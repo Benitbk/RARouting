@@ -25,6 +25,19 @@ public class Route {
 	}
 
 	public double newCost() {
+		return negativeConjectionCost();
+	}
+
+
+	public double negativeConjectionCost() {
+		double cost = 0;
+		for (Edge edge : edges)
+			cost += edge.cost * (edge.agents + 1);
+
+		return cost;
+	}
+
+	public double costSharing() {
 		double cost = 0;
 		for (Edge edge : edges)
 			cost += edge.cost / (edge.agents + 1);
