@@ -17,4 +17,9 @@ public class LinearNegativeCongestionEdge extends Edge {
     public double getCostForSingleAgent() {
         return factor * this.load;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + ": " + this.factor;
+    }
 }
