@@ -38,13 +38,6 @@ public class Main {
 		System.out.println("Agent\tRoute\tCost\tSocial Cost");
 		for (int i = 0; i < 5; i++) {
 
-			//Todo:
-			// Get SPGraph s,t
-			// Add abstract method get random path (spgraph) and impllement in seriesgraph, parlel graph and edge
-			// series : מחזיר שרשור של  g1,g2
-			// LISToFedges.addAll(edges of second)
-			// paralel: return 1 graph.
-
 			Agent currAgent = agents.get(i);
 			System.out.println("" + currAgent.id + "\t" + currAgent.getRoute() + "\t"
 					+ currAgent.getRoute().costForSingleAgent());
