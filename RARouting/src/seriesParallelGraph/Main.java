@@ -1,5 +1,9 @@
 package seriesParallelGraph;
 
+import seriesParallelGraph.agent.Agent;
+import seriesParallelGraph.graph.*;
+import seriesParallelGraph.graph.panel.SPGraphPanel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,10 +11,6 @@ import javax.swing.JFrame;
 
 public class Main {
 
-
-//    public static SPGraph generateGraph() {
-//
-//    }
 
 	public static void main(String[] args) {
 

@@ -1,11 +1,13 @@
-package seriesParallelGraph;
+package seriesParallelGraph.graph;
+
+import seriesParallelGraph.graph.Edge;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Route {
 
-	List<Edge> edges;
+	public List<Edge> edges;
 
 	public Route(Edge edge) {
 		this();

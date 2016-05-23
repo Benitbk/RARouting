@@ -1,8 +1,8 @@
-package seriesParallelGraph;
+package seriesParallelGraph.graph.panel;
 
 public class Point {
-	float x;
-	float y;
+	public float x;
+	public float y;
 
 	public Point(float x, float y) {
 		super();
