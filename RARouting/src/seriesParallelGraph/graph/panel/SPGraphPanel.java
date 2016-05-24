@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class SPGraphPanel extends JPanel implements MouseWheelListener {
 
-	SPGraph g;
+	SPGraph graph;
 	Map<Vertex, Point> vertexLocations;
 
 	Point offset = new Point(1, 1);
@@ -35,11 +35,11 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 
 	boolean showParallelEdges = false;
 
-	public SPGraphPanel(SPGraph g) {
+	public SPGraphPanel(SPGraph graph) {
 		super();
-		this.g = g;
+		this.graph = graph;
 
-		vertexLocations = g.locate(g.getLength(), g.getWidth());
+		vertexLocations = graph.locate(graph.getLength(), graph.getWidth());
 
 		Set<Entry<Vertex, Point>> vertsSet = vertexLocations.entrySet();
 		for (Entry<Vertex, Point> entry : vertsSet) {
@@ -50,8 +50,8 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 			p.y *= scale.y;
 		}
 
-		this.setSize((int) ((g.getLength() + offset.x + 1) * scale.x * grid.x),
-				(int) ((g.getWidth() + offset.y + 1) * scale.y * grid.y));
+		this.setSize((int) ((graph.getLength() + offset.x + 1) * scale.x * grid.x),
+				(int) ((graph.getWidth() + offset.y + 1) * scale.y * grid.y));
 		this.setPreferredSize(getSize());
 
 		this.addMouseWheelListener(this);

@@ -52,7 +52,7 @@ public abstract class SPGraph implements Serializable {
 
 	/**
 	 * @param vertsLoc
-	 * @param g
+	 * @param graph
 	 * @return
 	 */
 	protected abstract STPair locateRecursive(Map<Vertex, Point> vertsLoc,
