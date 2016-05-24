@@ -14,7 +14,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		SPGraph graph = SPGraph.randomizeGraph(10, 10);
-//
+
 		// SPGraph g = null;
 		// try {
 		// g = SPGraph.read("last graph");
