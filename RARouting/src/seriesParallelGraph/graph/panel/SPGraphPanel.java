@@ -9,7 +9,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -30,9 +29,11 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 	Map<Vertex, Point> vertexLocations;
 
 	Point offset = new Point(1, 1);
-	Point grid = new Point(25, 25);
+	Point grid = new Point(40, 40);
 
 	Point scale = new Point(2, 1.2f);
+
+	boolean showParallelEdges = true;
 
 	public SPGraphPanel(SPGraph g) {
 		super();
@@ -120,13 +121,14 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 			});
 
 			// draw the lines
-			// Point lineSource = new Point(vertexLoc.x + grid.x / 2,
-			// vertexLoc.y
-			// + grid.y / 2);
 
-			// to make parallel edges visible
-			Point lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
-					+ grid.y / (destinations.size() + 1));
+			Point lineSource;
+			if (showParallelEdges)
+				lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
+						+ grid.y / (destinations.size() + 1));
+			else
+				lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
+						+ grid.y / 2);
 
 			int i = 0;
 			for (Edge e : edges) {
@@ -147,8 +149,8 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 							(int) (0.7 * lineSource.y + 0.3 * dest.y));
 				}
 
-				// to make parallel edges visible
-				lineSource.y += grid.y / (destinations.size() + 1);
+				if (showParallelEdges)
+					lineSource.y += grid.y / (destinations.size() + 1);
 
 				i = 1 - i;
 			}

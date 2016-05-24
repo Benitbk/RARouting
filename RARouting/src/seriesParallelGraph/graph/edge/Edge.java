@@ -92,5 +92,10 @@ public abstract class Edge extends SPGraph {
 	public String getLabel() {
 		return "" + load;
 	}
+	
+
+	@Override
+	public void refresh() {
+	}
 
 }

@@ -2,7 +2,6 @@ package seriesParallelGraph;
 
 import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.graph.*;
-import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.panel.SPGraphPanel;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		SPGraph g = SPGraph.randomizeGraph(50, 10);
+		SPGraph graph = SPGraph.randomizeGraph(10, 10);
 
 		// SPGraph g = null;
 		// try {
@@ -23,15 +22,15 @@ public class Main {
 		// } catch (Exception e) {
 		// e.printStackTrace();
 		// }
-		showSPGraph(g);
+		showSPGraph(graph);
 
-		List<Vertex> vertices = g.getVertices();
+		List<Vertex> vertices = graph.getVertices();
 		List<Agent> agents = new ArrayList<>();
 		for (int i = 0; i < 5; i++)
 		{
-			Agent agent = Agent.randomizeAgent(g, vertices);
-			SPGraph graph = g.generateSubGraphFromVertices(agent.source,agent.destination);
-			agent.setRoute(graph.generateRandomRoute());
+			Agent agent = Agent.randomizeAgent(graph, vertices);
+			SPGraph subGraph = graph.generateSubGraphFromVertices(agent.source,agent.destination);
+			agent.setRoute(subGraph.generateRandomRoute());
 			agents.add(agent);
 		}
 
@@ -45,7 +44,7 @@ public class Main {
 
 		System.out.println(vertices);
 		System.out.println(agents);
-        System.out.println(g.getEdges());
+        System.out.println(graph.getEdges());
 
 		System.out.println("Agent\tRoute\tCost\tSocial Cost");
 		boolean improved = false; // has anybody improved
@@ -58,7 +57,7 @@ public class Main {
                 if(oldRoute != null)
                     oldCost = oldRoute.costForSingleAgent();
                 agent.setRoute(null);
-				Route newRoute = g.generateSubGraphFromVertices(agent.source,
+				Route newRoute = graph.generateSubGraphFromVertices(agent.source,
 						agent.destination).solve();
                 agent.setRoute(newRoute);
 				double newCost = newRoute.costForSingleAgent();
@@ -84,6 +83,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
+		frame.repaint();
 	}
 
 //	public static void test() {
