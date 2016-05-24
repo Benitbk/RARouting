@@ -14,14 +14,13 @@ public class Main {
 	public static void main(String[] args) {
 
 		SPGraph graph = SPGraph.randomizeGraph(10, 10);
-
+//
 		// SPGraph g = null;
 		// try {
 		// g = SPGraph.read("last graph");
 		// } catch (Exception e) {
 		// e.printStackTrace();
 		// }
-		showSPGraph(graph);
 		showSPGraph(graph);
 
 		List<Vertex> vertices = graph.getVertices();
