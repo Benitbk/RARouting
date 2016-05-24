@@ -33,7 +33,7 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 
 	Point scale = new Point(2, 1.2f);
 
-	boolean showParallelEdges = false;
+	boolean showParallelEdges = true;
 
 	public SPGraphPanel(SPGraph graph) {
 		super();

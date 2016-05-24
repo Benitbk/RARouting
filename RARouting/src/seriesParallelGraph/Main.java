@@ -22,6 +22,7 @@ public class Main {
 		// e.printStackTrace();
 		// }
 		showSPGraph(graph);
+		showSPGraph(graph);
 
 		List<Vertex> vertices = graph.getVertices();
 		List<Agent> agents = new ArrayList<>();
