@@ -38,7 +38,7 @@ public class Main {
 
 			Agent currAgent = agents.get(i);
 			System.out.println("" + currAgent.id + "\t" + currAgent.getRoute()
-					+ "\t" + currAgent.getRoute().costForSingleAgent());
+					+ "\t" + currAgent.getRoute().cost());
 		}
 
 		System.out.println(vertices);
@@ -54,19 +54,23 @@ public class Main {
 				Route oldRoute = agent.getRoute();
 				double oldCost = 0;
 				if (oldRoute != null)
-					oldCost = oldRoute.costForSingleAgent();
+					oldCost = oldRoute.cost();
 				agent.setRoute(null);
+
 				Route newRoute = graph.generateSubGraphFromVertices(
 						agent.source, agent.destination).solve();
-				agent.setRoute(newRoute);
-				double newCost = newRoute.costForSingleAgent();
+				double newCost = newRoute.forecastedCost();
 				if (oldRoute == null || oldCost > newCost) {
 					improved = true;
+					agent.setRoute(newRoute);
 
 					System.out.println("" + agent.id + "\t" + newRoute + "\t"
 							+ newCost + "\t" + socialCost);
-				} else
+				} else {
 					assert (oldCost == newCost);
+
+					agent.setRoute(oldRoute);
+				}
 			}
 		} while (improved);
 

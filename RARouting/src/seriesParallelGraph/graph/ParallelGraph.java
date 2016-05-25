@@ -67,7 +67,7 @@ public class ParallelGraph extends SPGraph {
 		Route route1 = g1.solve();
 		Route route2 = g2.solve();
 
-		if (route1.expectedCostForSingleAgent() < route2.expectedCostForSingleAgent())
+		if (route1.forecastedCost() < route2.forecastedCost())
 			return route1;
 		return route2;
 	}

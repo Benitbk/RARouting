@@ -25,7 +25,7 @@ public class LinearNegativeCongestionEdge extends Edge {
 
 	@Override
 	public String toString() {
-		return super.toString() + ": " + this.factor;
+		return super.toString() + ":" + this.factor;
 	}
 
 	@Override

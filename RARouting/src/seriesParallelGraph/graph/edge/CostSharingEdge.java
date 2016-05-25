@@ -26,7 +26,7 @@ public class CostSharingEdge extends Edge {
 
 	@Override
 	public String toString() {
-		return super.toString() + " :" + this.cost;
+		return super.toString() + ":" + this.cost;
 	}
 
 	@Override
