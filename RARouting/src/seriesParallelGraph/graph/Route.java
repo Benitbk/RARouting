@@ -18,19 +18,22 @@ public class Route {
 		this.edges = new ArrayList<>();
 	}
 
-	public double costForSingleAgent() {
+	public double cost() {
 		double cost = 0;
 		for (Edge edge : edges)
 			cost += edge.getCostForSingleAgent();
 		return cost;
 	}
 
-    public double expectedCostForSingleAgent() {
-        double cost = 0;
-        for (Edge edge : edges)
-            cost += edge.getExpectedCostForSingleAgent();
-        return cost;
-    }
+	/**
+	 * @return The cost an agent will pay if it chooses this route
+	 */
+	public double forecastedCost() {
+		double cost = 0;
+		for (Edge edge : edges)
+			cost += edge.getForecastedCostForSingleAgent();
+		return cost;
+	}
 
 	@Override
 	public String toString() {

@@ -82,11 +82,20 @@ public abstract class Edge extends SPGraph {
 
     public abstract double getCostForSingleAgent();
 
-    public double getExpectedCostForSingleAgent() {
+    public double getForecastedCostForSingleAgent() {
         this.load++;
         double cost = this.getCostForSingleAgent();
         this.load--;
         return cost;
     }
+
+	public String getLabel() {
+		return "" + load;
+	}
+	
+
+	@Override
+	public void refresh() {
+	}
 
 }

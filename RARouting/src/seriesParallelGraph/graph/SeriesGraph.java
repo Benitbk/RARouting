@@ -35,6 +35,10 @@ public class SeriesGraph extends SPGraph {
 		this.s = g1.s;
 		this.t = g2.t;
 
+		calcSize();
+	}
+
+	public void calcSize() {
 		this.length = g1.getLength() + g2.getLength();
 		if (g1.getWidth() + g2.getWidth() < 1)
 			this.width = 1;
@@ -143,4 +147,15 @@ public class SeriesGraph extends SPGraph {
         edges.addAll(this.g2.getEdgesRecursive());
         return edges;
     }
+
+	@Override
+	public void refresh() {
+		g1.refresh();
+		g2.refresh();
+		
+		this.s = g1.s;
+		this.t = g2.t;
+
+		calcSize();
+	}
 }

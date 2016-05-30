@@ -46,6 +46,10 @@ public class ParallelGraph extends SPGraph {
 		this.s = g1.s;
 		this.t = g1.t;
 
+		calcSize();
+	}
+
+	public void calcSize() {
 		this.length = Math.max(g1.getLength(), g2.getLength());
 		this.width = g1.getWidth() + g2.getWidth();
 	}
@@ -63,7 +67,7 @@ public class ParallelGraph extends SPGraph {
 		Route route1 = g1.solve();
 		Route route2 = g2.solve();
 
-		if (route1.expectedCostForSingleAgent() < route2.expectedCostForSingleAgent())
+		if (route1.forecastedCost() < route2.forecastedCost())
 			return route1;
 		return route2;
 	}
@@ -172,4 +176,15 @@ public class ParallelGraph extends SPGraph {
         edges.addAll(this.g2.getEdgesRecursive());
         return edges;
     }
+
+	@Override
+	public void refresh() {
+		g1.refresh();
+		g2.refresh();
+		
+		this.s = g1.s;
+		this.t = g1.t;
+		
+		calcSize();
+	}
 }

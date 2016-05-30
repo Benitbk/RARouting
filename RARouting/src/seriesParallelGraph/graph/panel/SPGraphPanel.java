@@ -9,9 +9,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -25,20 +25,21 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class SPGraphPanel extends JPanel implements MouseWheelListener {
 
-	SPGraph g;
+	SPGraph graph;
 	Map<Vertex, Point> vertexLocations;
 
 	Point offset = new Point(1, 1);
-	Point grid = new Point(25, 25);
+	Point grid = new Point(40, 40);
 
 	Point scale = new Point(2, 1.2f);
 
-	public SPGraphPanel(SPGraph g) {
+	boolean showParallelEdges = true;
+
+	public SPGraphPanel(SPGraph graph) {
 		super();
-		this.g = g;
+		this.graph = graph;
 
-
-		vertexLocations = g.locate(g.getLength(), g.getWidth());
+		vertexLocations = graph.locate(graph.getLength(), graph.getWidth());
 
 		Set<Entry<Vertex, Point>> vertsSet = vertexLocations.entrySet();
 		for (Entry<Vertex, Point> entry : vertsSet) {
@@ -49,8 +50,8 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 			p.y *= scale.y;
 		}
 
-		this.setSize((int) ((g.getLength() + offset.x + 1) * scale.x * grid.x),
-				(int) ((g.getWidth() + offset.y + 1) * scale.y * grid.y));
+		this.setSize((int) ((graph.getLength() + offset.x + 1) * scale.x * grid.x),
+				(int) ((graph.getWidth() + offset.y + 1) * scale.y * grid.y));
 		this.setPreferredSize(getSize());
 
 		this.addMouseWheelListener(this);
@@ -91,9 +92,10 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 			List<Edge> edges = v.leaving;
 
 			// draw edges leaving v
-			g.setColor(new Color(new Random().nextInt(0xFFFFFF) / 2));
+			Color randColor = new Color(new Random().nextInt(0xFFFFFF) / 2);
+
 			// calculate the lines destinations
-			List<Point> destinations = new ArrayList<Point>();
+			Map<Edge, Point> destinations = new HashMap<Edge, Point>();
 			for (Edge e : edges) {
 				Point v2Point = vertexLocations.get(e.t);
 				if (v2Point == null)
@@ -102,13 +104,14 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 						(v2Point.y + offset.y) * grid.y);
 				v2Loc.x += grid.x / 2;
 				v2Loc.y += grid.y / 2;
-				destinations.add(new Point(v2Loc.x, v2Loc.y));
+				destinations.put(e, new Point(v2Loc.x, v2Loc.y));
 			}
 			// sort the lines by angel from v
-			Collections.sort(destinations, new Comparator<Point>() {
+			Collections.sort(edges, new Comparator<Edge>() {
 				@Override
-				public int compare(Point p1, Point p2) {
-					// System.out.println(v);
+				public int compare(Edge e1, Edge e2) {
+					Point p1 = destinations.get(e1);
+					Point p2 = destinations.get(e2);
 					Double p1Direction = Math.atan((p1.y - vertexCenter.y)
 							/ (p1.x - vertexCenter.x));
 					Double p2Direction = Math.atan((p2.y - vertexCenter.y)
@@ -118,20 +121,38 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener {
 			});
 
 			// draw the lines
-//			Point lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
-//					+ grid.y / 2);
 
-			// to make parallel edges visible
-			 Point lineSource = new Point(vertexLoc.x + grid.x / 2,
-			 vertexLoc.y
-			 + grid.y / (destinations.size() + 1));
+			Point lineSource;
+			if (showParallelEdges)
+				lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
+						+ grid.y / (destinations.size() + 1));
+			else
+				lineSource = new Point(vertexLoc.x + grid.x / 2, vertexLoc.y
+						+ grid.y / 2);
 
-			for (Point dest : destinations) {
+			int i = 0;
+			for (Edge e : edges) {
+				g.setColor(randColor);
+				Point dest = destinations.get(e);
 				g.drawLine((int) lineSource.x, (int) lineSource.y,
 						(int) dest.x, (int) dest.y);
 
-				// to make parallel edges visible
-				 lineSource.y += grid.y / (destinations.size() + 1);
+				// draw cost
+				g.setColor(Color.BLACK);
+				String s = e.getLabel();
+				if (i == 0) {
+					g.drawString(s,
+							(int) (0.75 * lineSource.x + 0.25 * dest.x),
+							(int) (0.75 * lineSource.y + 0.25 * dest.y));
+				} else {
+					g.drawString(s, (int) (0.7 * lineSource.x + 0.3 * dest.x),
+							(int) (0.7 * lineSource.y + 0.3 * dest.y));
+				}
+
+				if (showParallelEdges)
+					lineSource.y += grid.y / (destinations.size() + 1);
+
+				i = 1 - i;
 			}
 		}
 

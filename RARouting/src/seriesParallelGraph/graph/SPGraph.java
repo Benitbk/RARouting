@@ -1,6 +1,5 @@
 package seriesParallelGraph.graph;
 
-import seriesParallelGraph.graph.edge.CostSharingEdge;
 import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.edge.LinearNegativeCongestionEdge;
 import seriesParallelGraph.graph.panel.Point;
@@ -53,7 +52,7 @@ public abstract class SPGraph implements Serializable {
 
 	/**
 	 * @param vertsLoc
-	 * @param g
+	 * @param graph
 	 * @return
 	 */
 	protected abstract STPair locateRecursive(Map<Vertex, Point> vertsLoc,
@@ -102,18 +101,20 @@ public abstract class SPGraph implements Serializable {
 			graphs.remove(i1);
 
 		}
+		SPGraph graph = graphs.get(0);
+		graph.refresh();
 
 		FileOutputStream fout;
 		try {
 			fout = new FileOutputStream("last graph");
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
-			oos.writeObject(graphs.get(0));
+			oos.writeObject(graph);
 			fout.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return graphs.get(0);
+		return graph;
 	}
 
 	public abstract  Route generateRandomRoute();
@@ -142,4 +143,9 @@ public abstract class SPGraph implements Serializable {
     }
 
     public abstract List<Edge> getEdgesRecursive();
+    
+    /**
+     * Updates the fields of the graph recursively
+     */
+    public abstract void refresh();
 }
