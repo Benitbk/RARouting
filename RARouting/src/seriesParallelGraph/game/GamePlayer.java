@@ -34,7 +34,7 @@ public class GamePlayer {
 				Route improvedRoute = this.gameState.getImprovedRoute(nextAgent);
                 double oldCost = nextAgent.getRoute().cost();
 				nextAgent.setRoute(improvedRoute);
-                System.out.println(nextAgent.toStringEx() +"\t"+oldCost );
+                System.out.println(nextAgent.toStringEx() +"\t"+oldCost + "\t" + this.gameState.game.getSocialCost());
 			}
 		}
 

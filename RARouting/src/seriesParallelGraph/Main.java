@@ -7,6 +7,7 @@ import seriesParallelGraph.game.Game;
 import seriesParallelGraph.game.GamePlayer;
 import seriesParallelGraph.graph.edge.EdgeKind;
 import seriesParallelGraph.graph.panel.SPGraphPanel;
+import seriesParallelGraph.policies.AgentGreatestImprovePolicy;
 import seriesParallelGraph.policies.AgentIncreasingPolicy;
 
 import javax.swing.JFrame;
@@ -18,16 +19,17 @@ public class Main {
 	public static void main(String[] args) {
         Map<Agent, Route> oldRoutes = new HashMap<>();
 
-        Game game = Game.randomizeGame(100, 10, 50, 0.6, EdgeKind.LinearNegativeCongestion, true);
+        Game game = Game.randomizeGame(15, 10, 5, 0.6, EdgeKind.LinearNegativeCongestion, true);
         for(Agent agent : game.agents)
         {
             oldRoutes.put(agent, agent.getRoute());
         }
         showSPGraph(game.graph);
         GameState gameState = new GameState(game);
-        GamePlayer gamePlayer = new GamePlayer(gameState, new AgentIncreasingPolicy(gameState));
+        GamePlayer gamePlayer = new GamePlayer(gameState, new AgentGreatestImprovePolicy(gameState));
         gamePlayer.start();
         System.out.println("finished");
+        System.out.println("old routes");
         for(Agent agent:oldRoutes.keySet()) {
             System.out.print(agent.id + "\t");
             System.out.println(oldRoutes.get(agent));
