@@ -12,7 +12,7 @@ public class CostSharingEdge extends Edge {
 	 */
 	private static final long serialVersionUID = -2741414792845886199L;
 
-	double cost;
+	public double cost;
 
 	public CostSharingEdge(Vertex s, Vertex t, double cost) {
 		super(s, t);
