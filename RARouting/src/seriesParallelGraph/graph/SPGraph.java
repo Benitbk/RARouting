@@ -1,6 +1,8 @@
 package seriesParallelGraph.graph;
 
+import seriesParallelGraph.graph.edge.CostSharingEdge;
 import seriesParallelGraph.graph.edge.Edge;
+import seriesParallelGraph.graph.edge.EdgeKind;
 import seriesParallelGraph.graph.edge.LinearNegativeCongestionEdge;
 import seriesParallelGraph.graph.panel.Point;
 
@@ -75,12 +77,20 @@ public abstract class SPGraph implements Serializable {
 		return vertsLoc;
 	}
 
-	public static SPGraph randomizeGraph(int size, int maxEdgeCost) {
+	public static SPGraph randomizeGraph(int size, int maxEdgeCost, double parallelProbability, EdgeKind edgeKind) {
 		Random random = new Random();
 		List<SPGraph> graphs = new ArrayList<SPGraph>();
 		for (int i = 0; i < size; i++) {
-			graphs.add(new LinearNegativeCongestionEdge(new Vertex(), new Vertex(), random
-					.nextInt(maxEdgeCost)));
+            if(edgeKind == EdgeKind.CostSharing)
+            {
+                graphs.add(new CostSharingEdge(new Vertex(), new Vertex(), random.nextInt(maxEdgeCost) + 1));
+            }
+            else
+            {
+                graphs.add(new LinearNegativeCongestionEdge(new Vertex(), new Vertex(), random
+                        .nextInt(maxEdgeCost) + 1));
+            }
+
 		}
 
 		while (graphs.size() > 1) {
@@ -91,7 +101,7 @@ public abstract class SPGraph implements Serializable {
 				i2 = random.nextInt(graphs.size());
 			}
 
-			if (random.nextBoolean())
+			if (random.nextDouble() <= parallelProbability)
 				graphs.add(new ParallelGraph(graphs.get(i1), graphs.get(i2),
 						true));
 			else

@@ -1,86 +1,45 @@
 package seriesParallelGraph;
 
 import seriesParallelGraph.agent.Agent;
+import seriesParallelGraph.game.GameState;
 import seriesParallelGraph.graph.*;
+import seriesParallelGraph.game.Game;
+import seriesParallelGraph.game.GamePlayer;
+import seriesParallelGraph.graph.edge.EdgeKind;
 import seriesParallelGraph.graph.panel.SPGraphPanel;
-
-import java.util.ArrayList;
-import java.util.List;
+import seriesParallelGraph.policies.AgentIncreasingPolicy;
 
 import javax.swing.JFrame;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
 	public static void main(String[] args) {
+        Map<Agent, Route> oldRoutes = new HashMap<>();
 
-		SPGraph graph = SPGraph.randomizeGraph(10, 10);
-
-		// SPGraph g = null;
-		// try {
-		// g = SPGraph.read("last graph");
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-		showSPGraph(graph);
-
-		List<Vertex> vertices = graph.getVertices();
-		List<Agent> agents = new ArrayList<>();
-		for (int i = 0; i < 5; i++) {
-			Agent agent = Agent.randomizeAgent(graph, vertices);
-			SPGraph subGraph = graph.generateSubGraphFromVertices(agent.source,
-					agent.destination);
-			agent.setRoute(subGraph.generateRandomRoute());
-			agents.add(agent);
-		}
-
-		System.out.println("Agent\tRoute\tCost");
-		for (int i = 0; i < 5; i++) {
-
-			Agent currAgent = agents.get(i);
-			System.out.println("" + currAgent.id + "\t" + currAgent.getRoute()
-					+ "\t" + currAgent.getRoute().cost());
-		}
-
-		System.out.println(vertices);
-		System.out.println(agents);
-		System.out.println(graph.getEdges());
-
-		System.out.println("Agent\tRoute\tCost\tSocial Cost");
-		boolean improved = false; // has anybody improved
-		double socialCost = 0;
-		do {
-			improved = false;
-			for (Agent agent : agents) {
-				Route oldRoute = agent.getRoute();
-				double oldCost = 0;
-				if (oldRoute != null)
-					oldCost = oldRoute.cost();
-				agent.setRoute(null);
-
-				Route newRoute = graph.generateSubGraphFromVertices(
-						agent.source, agent.destination).solve();
-				double newCost = newRoute.forecastedCost();
-				if (oldRoute == null || oldCost > newCost) {
-					improved = true;
-					agent.setRoute(newRoute);
-
-					System.out.println("" + agent.id + "\t" + newRoute + "\t"
-							+ newCost + "\t" + socialCost);
-				} else {
-					assert (oldCost == newCost);
-
-					agent.setRoute(oldRoute);
-				}
-			}
-		} while (improved);
+        Game game = Game.randomizeGame(100, 10, 50, 0.6, EdgeKind.LinearNegativeCongestion, true);
+        for(Agent agent : game.agents)
+        {
+            oldRoutes.put(agent, agent.getRoute());
+        }
+        showSPGraph(game.graph);
+        GameState gameState = new GameState(game);
+        GamePlayer gamePlayer = new GamePlayer(gameState, new AgentIncreasingPolicy(gameState));
+        gamePlayer.start();
+        System.out.println("finished");
+        for(Agent agent:oldRoutes.keySet()) {
+            System.out.print(agent.id + "\t");
+            System.out.println(oldRoutes.get(agent));
+        }
 
 		// showSPGraph(g);
 
-		// test();
+		// test();∂®
 
 	}
 
-	public static void showSPGraph(SPGraph g) {
+	private static void showSPGraph(SPGraph g) {
 		JFrame frame = new JFrame();
 		frame.add(new SPGraphPanel(g));
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
