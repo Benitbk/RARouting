@@ -1,5 +1,6 @@
 package seriesParallelGraph.graph;
 
+import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.graph.edge.CostSharingEdge;
 import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.edge.EdgeKind;
@@ -77,19 +78,18 @@ public abstract class SPGraph implements Serializable {
 		return vertsLoc;
 	}
 
-	public static SPGraph randomizeGraph(int size, int maxEdgeCost, double parallelProbability, EdgeKind edgeKind) {
+	public static SPGraph randomizeGraph(int size, int maxEdgeCost,
+			double parallelProbability, EdgeKind edgeKind) {
 		Random random = new Random();
 		List<SPGraph> graphs = new ArrayList<SPGraph>();
 		for (int i = 0; i < size; i++) {
-            if(edgeKind == EdgeKind.CostSharing)
-            {
-                graphs.add(new CostSharingEdge(new Vertex(), new Vertex(), random.nextInt(maxEdgeCost) + 1));
-            }
-            else
-            {
-                graphs.add(new LinearNegativeCongestionEdge(new Vertex(), new Vertex(), random
-                        .nextInt(maxEdgeCost) + 1));
-            }
+			if (edgeKind == EdgeKind.CostSharing) {
+				graphs.add(new CostSharingEdge(new Vertex(), new Vertex(),
+						random.nextInt(maxEdgeCost) + 1));
+			} else {
+				graphs.add(new LinearNegativeCongestionEdge(new Vertex(),
+						new Vertex(), random.nextInt(maxEdgeCost) + 1));
+			}
 
 		}
 
@@ -127,7 +127,7 @@ public abstract class SPGraph implements Serializable {
 		return graph;
 	}
 
-	public abstract  Route generateRandomRoute();
+	public abstract Route generateRandomRoute();
 
 	public static SPGraph read(String name) throws Exception {
 		// read object from file
@@ -146,16 +146,18 @@ public abstract class SPGraph implements Serializable {
 
 	public abstract Set<Vertex> getVerticesRecursive();
 
-    public List<Edge> getEdges() {
-        List<Edge> edges = new ArrayList<>();
-        edges.addAll(this.getEdgesRecursive());
-        return edges;
-    }
+	public List<Edge> getEdges() {
+		List<Edge> edges = new ArrayList<>();
+		edges.addAll(this.getEdgesRecursive());
+		return edges;
+	}
 
-    public abstract List<Edge> getEdgesRecursive();
-    
-    /**
-     * Updates the fields of the graph recursively
-     */
-    public abstract void refresh();
+	public abstract List<Edge> getEdgesRecursive();
+
+	/**
+	 * Updates the fields of the graph recursively
+	 */
+	public abstract void refresh();
+
+	public abstract List<Route> getStrategies();
 }

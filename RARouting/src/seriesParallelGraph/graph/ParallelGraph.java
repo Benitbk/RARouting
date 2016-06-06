@@ -187,4 +187,21 @@ public class ParallelGraph extends SPGraph {
 		
 		calcSize();
 	}
+
+	@Override
+	public List<Route> getStrategies() {
+		List<Route> g1Strategies = g1.getStrategies();
+		List<Route> g2Strategies = g1.getStrategies();
+		
+		List<Route> strategies = new ArrayList<Route>();
+		for (Route g1Route : g1Strategies) {
+			for (Route g2Route : g2Strategies) {
+				Route route = new Route();
+				route.edges.addAll(g1Route.edges);
+				route.edges.addAll(g2Route.edges);
+				strategies.add(route);
+			}
+		}
+		return strategies;
+	}
 }
