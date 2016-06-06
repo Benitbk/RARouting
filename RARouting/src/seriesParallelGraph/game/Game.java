@@ -21,6 +21,14 @@ public class Game {
         this.agents = agents;
     }
 
+    public double getSocialCost() {
+        int socialCost = 0;
+        for(Agent agent : this.agents) {
+            socialCost += agent.getRoute().cost();
+        }
+        return socialCost;
+    }
+
     public static Game randomizeGame(int graphSize, int maxEdgeCost, int numberOfAgents, double parallelProbability,
                                      EdgeKind edgeKind, boolean randomizeAgents) {
         SPGraph graph = SPGraph.randomizeGraph(graphSize, maxEdgeCost, parallelProbability, edgeKind);

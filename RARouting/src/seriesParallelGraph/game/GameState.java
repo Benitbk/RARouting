@@ -14,6 +14,8 @@ public class GameState {
         this.game = game;
     }
 
+
+
     public Route getImprovedRoute(Agent agent) {
         Route oldRoute = agent.getRoute();
         double oldCost = 0;
