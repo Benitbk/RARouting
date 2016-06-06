@@ -1,6 +1,8 @@
 package seriesParallelGraph.game;
 
 import seriesParallelGraph.agent.Agent;
+import seriesParallelGraph.game.results.AgentStep;
+import seriesParallelGraph.game.results.PolicyResult;
 import seriesParallelGraph.graph.Route;
 import seriesParallelGraph.policies.AgentPolicy;
 
@@ -18,11 +20,8 @@ public class GamePlayer {
 
 	}
 
-	public void start()
+	public void start(PolicyResult policyResult)
     {
-		System.out.println("Agent\tRoute\tCost\tOld Cost\tSocial Cost");
-		//double socialCost = 0;
-
 		while(true){
 			Agent nextAgent = this.policy.getNextAgent();
 			if(nextAgent == null)
@@ -34,7 +33,7 @@ public class GamePlayer {
 				Route improvedRoute = this.gameState.getImprovedRoute(nextAgent);
                 double oldCost = nextAgent.getRoute().cost();
 				nextAgent.setRoute(improvedRoute);
-                System.out.println(nextAgent.toStringEx() +"\t"+oldCost + "\t" + this.gameState.game.getSocialCost());
+                policyResult.steps.add(new AgentStep(nextAgent, oldCost, this.gameState.game.getSocialCost()));
 			}
 		}
 

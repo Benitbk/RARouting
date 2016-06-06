@@ -43,7 +43,7 @@ public class Game implements Serializable {
         return g;
     }
 
-    public static Game randomizeGame(int graphSize, int maxEdgeCost, int numberOfAgents, double parallelProbability,
+    public static Game  randomizeGame(int graphSize, int maxEdgeCost, int numberOfAgents, double parallelProbability,
                                      EdgeKind edgeKind, boolean randomizeAgents) {
 
         SPGraph graph = SPGraph.randomizeGraph(graphSize, maxEdgeCost, parallelProbability, edgeKind);
@@ -67,18 +67,18 @@ public class Game implements Serializable {
         }
 
 
-        System.out.println("Agent\tRoute\tCost");
-        for (int i = 0; i < numberOfAgents; i++) {
-            Agent currAgent = agents.get(i);
-            System.out.println(currAgent.toStringEx());
-        }
+//        System.out.println("Agent\tRoute\tCost");
+//        for (int i = 0; i < numberOfAgents; i++) {
+//            Agent currAgent = agents.get(i);
+//            System.out.println(currAgent.toStringEx());
+//        }
 
 
         Game game = new Game(graph, agents);
         game.write("last game");
-        System.out.println(vertices);
-        System.out.println(agents);
-        System.out.println(graph.getEdges());
+        //System.out.println(vertices);
+        //System.out.println(agents);
+        //System.out.println(graph.getEdges());
         return game;
     }
 

@@ -2,6 +2,8 @@ package seriesParallelGraph;
 
 import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.game.GameState;
+import seriesParallelGraph.game.results.GameResult;
+import seriesParallelGraph.game.results.PolicyResult;
 import seriesParallelGraph.graph.*;
 import seriesParallelGraph.game.Game;
 import seriesParallelGraph.game.GamePlayer;
@@ -9,42 +11,49 @@ import seriesParallelGraph.graph.edge.EdgeKind;
 import seriesParallelGraph.graph.panel.SPGraphPanel;
 import seriesParallelGraph.policies.AgentGreatestImprovePolicy;
 import seriesParallelGraph.policies.AgentIncreasingPolicy;
+import seriesParallelGraph.policies.AgentPolicy;
 
 import javax.swing.JFrame;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
 
 	public static void main(String[] args) {
-        Map<Agent, Route> oldRoutes = new HashMap<>();
+        System.out.println("Started");
+
         Game game = getGame(false);
-        for(Agent agent : game.agents)
-        {
-            oldRoutes.put(agent, agent.getRoute());
-        }
+        GameResult gameResult = new GameResult(game);
         showSPGraph(game.graph);
         GameState gameState = new GameState(game);
-        GamePlayer gamePlayer = new GamePlayer(gameState, new AgentGreatestImprovePolicy(gameState));
-        gamePlayer.start();
 
-        System.out.println("finished first policy");
-        for(Agent agent:oldRoutes.keySet()) {
-            agent.setRoute(oldRoutes.get(agent));
+        startWithPolicy(gameResult, gameState, new AgentIncreasingPolicy(gameState));
+        startWithPolicy(gameResult, gameState, new AgentGreatestImprovePolicy(gameState));
+        for(PolicyResult policyResult: gameResult.policyResults) {
+            System.out.println("Policy: " + policyResult.policyName);
+            System.out.println("Number of steps: " + policyResult.steps.size());
+            System.out.println("Final social cost: " + policyResult.steps.get(policyResult.steps.size() - 1).socialCost);
         }
-        GamePlayer gamePlayer2 = new GamePlayer(gameState, new AgentIncreasingPolicy(gameState));
-        gamePlayer2.start();
-		// showSPGraph(g);
-
-		// test();∂®
-
+        System.out.println("Started");
 	}
 
+
+    private static void startWithPolicy(GameResult gameResult, GameState gameState, AgentPolicy policy) {
+        GamePlayer gamePlayer = new GamePlayer(gameState, policy);
+        PolicyResult policyResult = new PolicyResult(policy.getClass().getSimpleName());
+        gamePlayer.start(policyResult);
+        System.out.println("finished policy: " + policyResult.policyName);
+        for(Agent agent:gameState.game.agents) {
+            gameResult.game.agents.stream().filter(initialAgent -> initialAgent.id == agent.id).forEach(initialAgent -> {
+                agent.setRoute(initialAgent.getRoute());
+            });
+        }
+        gameResult.policyResults.add(policyResult);
+
+    }
 
     private static Game getGame(boolean fromCache) {
         Game game = null;
         if(!fromCache)
-            game = Game.randomizeGame(100, 10, 15, 0.6, EdgeKind.LinearNegativeCongestion, true);
+            game = Game.randomizeGame(100, 10, 50, 0.6, EdgeKind.LinearNegativeCongestion, true);
         else {
             try {
                 game = Game.read("last game");
