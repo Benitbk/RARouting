@@ -25,6 +25,7 @@ public abstract class Edge extends SPGraph {
 		s.leaving.add(this);
 		t.entering.add(this);
 	}
+
 	public int load;
 
 	@Override
@@ -49,7 +50,7 @@ public abstract class Edge extends SPGraph {
 
 	@Override
 	protected STPair locateRecursive(Map<Vertex, Point> vertsLoc, float x,
-                                     float y, float length, float width) {
+			float y, float length, float width) {
 		return new STPair(s, t);
 	}
 
@@ -69,33 +70,37 @@ public abstract class Edge extends SPGraph {
 	}
 
 	@Override
-	public Route generateRandomRoute()
-	{
+	public Route generateRandomRoute() {
 		return new Route(this);
 	}
-
 
 	@Override
 	public String toString() {
 		return "(" + s.toString() + "," + t.toString() + ")";
 	}
 
-    public abstract double getCostForSingleAgent();
+	public abstract double getCostForSingleAgent();
 
-    public double getForecastedCostForSingleAgent() {
-        this.load++;
-        double cost = this.getCostForSingleAgent();
-        this.load--;
-        return cost;
-    }
+	public double getForecastedCostForSingleAgent() {
+		this.load++;
+		double cost = this.getCostForSingleAgent();
+		this.load--;
+		return cost;
+	}
 
 	public String getLabel() {
 		return "" + load;
 	}
-	
 
 	@Override
 	public void refresh() {
+	}
+
+	@Override
+	public List<Route> getStrategies() {
+		ArrayList<Route> strategies = new ArrayList<Route>();
+		strategies.add(new Route(this));
+		return strategies;
 	}
 
 }

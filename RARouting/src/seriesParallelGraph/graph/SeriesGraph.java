@@ -54,8 +54,7 @@ public class SeriesGraph extends SPGraph {
 	}
 
 	@Override
-	public Route generateRandomRoute()
-	{
+	public Route generateRandomRoute() {
 		Route route1 = g1.generateRandomRoute();
 		Route route2 = g2.generateRandomRoute();
 		route1.edges.addAll(route2.edges);
@@ -112,16 +111,16 @@ public class SeriesGraph extends SPGraph {
 
 	@Override
 	protected STPair locateRecursive(Map<Vertex, Point> vertsLoc, float x,
-                                     float y, float length, float width) {
+			float y, float length, float width) {
 		// ratio between the length given for drawing the graph and the length
 		// that is needed
 		float r = length / (float) this.getLength();
 		Point commonVertLoc = new Point(x + r * g1.getLength(), y + width / 2);
 
-//		STPair stPair = g1.locateRecursive(vertsLoc, x,
-//				y + (width - g1.getWidth()) / 2, r * g1.getLength(), g1.getWidth());
-		STPair stPair = g1.locateRecursive(vertsLoc, x,
-				y , r * g1.getLength(), width);
+		// STPair stPair = g1.locateRecursive(vertsLoc, x,
+		// y + (width - g1.getWidth()) / 2, r * g1.getLength(), g1.getWidth());
+		STPair stPair = g1.locateRecursive(vertsLoc, x, y, r * g1.getLength(),
+				width);
 
 		// Point commonVertLoc = new Point(x + g1.getLength() - 1, y + width /
 		// 2);
@@ -132,30 +131,38 @@ public class SeriesGraph extends SPGraph {
 		return stPair;
 	}
 
-    @Override
-    public Set<Vertex> getVerticesRecursive() {
-        Set<Vertex> set = new HashSet<Vertex>();
-        set.addAll(this.g1.getVerticesRecursive());
-        set.addAll(this.g2.getVerticesRecursive());
-        return set;
-    }
+	@Override
+	public Set<Vertex> getVerticesRecursive() {
+		Set<Vertex> set = new HashSet<Vertex>();
+		set.addAll(this.g1.getVerticesRecursive());
+		set.addAll(this.g2.getVerticesRecursive());
+		return set;
+	}
 
-    @Override
-    public List<Edge> getEdgesRecursive() {
-        List<Edge> edges = new ArrayList<Edge>();
-        edges.addAll(this.g1.getEdgesRecursive());
-        edges.addAll(this.g2.getEdgesRecursive());
-        return edges;
-    }
+	@Override
+	public List<Edge> getEdgesRecursive() {
+		List<Edge> edges = new ArrayList<Edge>();
+		edges.addAll(this.g1.getEdgesRecursive());
+		edges.addAll(this.g2.getEdgesRecursive());
+		return edges;
+	}
 
 	@Override
 	public void refresh() {
 		g1.refresh();
 		g2.refresh();
-		
+
 		this.s = g1.s;
 		this.t = g2.t;
 
 		calcSize();
+	}
+
+	@Override
+	public List<Route> getStrategies() {
+		List<Route> g1Strategies = g1.getStrategies();
+		List<Route> g2Strategies = g1.getStrategies();
+		g1Strategies.addAll(g2Strategies);
+		return g1Strategies;
 	}
 }
