@@ -22,6 +22,7 @@ public class AgentGreatestImprovePolicy extends AgentPolicy {
             if(improvedRoute == null)
                 continue;
             double improvement =  agent.getRoute().cost() - improvedRoute.cost();
+//            System.out.printf("\tAgent %d can improve by %f\n", agent.id, improvement);
             if(improvement > currentImprovement) {
                 currentAgent = agent;
                 currentImprovement = improvement;

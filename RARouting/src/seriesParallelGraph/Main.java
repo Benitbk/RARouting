@@ -18,8 +18,7 @@ public class Main {
 
 	public static void main(String[] args) {
         Map<Agent, Route> oldRoutes = new HashMap<>();
-
-        Game game = Game.randomizeGame(15, 10, 5, 0.6, EdgeKind.LinearNegativeCongestion, true);
+        Game game = getGame(false);
         for(Agent agent : game.agents)
         {
             oldRoutes.put(agent, agent.getRoute());
@@ -28,18 +27,34 @@ public class Main {
         GameState gameState = new GameState(game);
         GamePlayer gamePlayer = new GamePlayer(gameState, new AgentGreatestImprovePolicy(gameState));
         gamePlayer.start();
-        System.out.println("finished");
-        System.out.println("old routes");
-        for(Agent agent:oldRoutes.keySet()) {
-            System.out.print(agent.id + "\t");
-            System.out.println(oldRoutes.get(agent));
-        }
 
+        System.out.println("finished first policy");
+        for(Agent agent:oldRoutes.keySet()) {
+            agent.setRoute(oldRoutes.get(agent));
+        }
+        GamePlayer gamePlayer2 = new GamePlayer(gameState, new AgentIncreasingPolicy(gameState));
+        gamePlayer2.start();
 		// showSPGraph(g);
 
 		// test();∂®
 
 	}
+
+
+    private static Game getGame(boolean fromCache) {
+        Game game = null;
+        if(!fromCache)
+            game = Game.randomizeGame(100, 10, 15, 0.6, EdgeKind.LinearNegativeCongestion, true);
+        else {
+            try {
+                game = Game.read("last game");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Failed reading game from file");
+            }
+        }
+        return game;
+    }
 
 	private static void showSPGraph(SPGraph g) {
 		JFrame frame = new JFrame();
