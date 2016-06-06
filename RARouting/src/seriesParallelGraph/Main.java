@@ -9,9 +9,7 @@ import seriesParallelGraph.game.Game;
 import seriesParallelGraph.game.GamePlayer;
 import seriesParallelGraph.graph.edge.EdgeKind;
 import seriesParallelGraph.graph.panel.SPGraphPanel;
-import seriesParallelGraph.policies.AgentGreatestImprovePolicy;
-import seriesParallelGraph.policies.AgentIncreasingPolicy;
-import seriesParallelGraph.policies.AgentPolicy;
+import seriesParallelGraph.policies.*;
 
 import javax.swing.JFrame;
 
@@ -27,6 +25,8 @@ public class Main {
 
         startWithPolicy(gameResult, gameState, new AgentIncreasingPolicy(gameState, EdgeKind.CostSharing));
         startWithPolicy(gameResult, gameState, new AgentGreatestImprovePolicy(gameState, EdgeKind.CostSharing));
+        startWithPolicy(gameResult, gameState, new AgentMaximalCostPolicy(gameState, EdgeKind.CostSharing));
+        //startWithPolicy(gameResult, gameState, new AgentMinPathPolicy(gameState, EdgeKind.CostSharing));
         for(PolicyResult policyResult: gameResult.policyResults) {
             System.out.println("Policy: " + policyResult.policyName);
             System.out.println("Number of steps: " + policyResult.steps.size());
