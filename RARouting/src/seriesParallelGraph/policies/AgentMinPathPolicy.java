@@ -56,18 +56,12 @@ public class AgentMinPathPolicy extends AgentPolicy {
     {
         double cost =0;
 
-        if (edgeKind == EdgeKind.CostSharing)
-        {
+        if (edgeKind == EdgeKind.CostSharing) {
 
             for (Edge edge : route.edges) {
                 cost += ((CostSharingEdge) edge).cost;
             }
 
-        else
-        {
-            for (Edge edge : route.edges) {
-              //  cost += ((LinearNegativeCongestionEdgeedge).cost;
-            }
         }
 
         return cost;

@@ -13,7 +13,7 @@ public abstract class AgentPolicy {
     protected final EdgeKind edgeKind;
 
     public AgentPolicy(GameState gameState, EdgeKind edgeKind)
-    {
+    { //
         this.gameState = gameState;
         this.edgeKind = edgeKind;
 

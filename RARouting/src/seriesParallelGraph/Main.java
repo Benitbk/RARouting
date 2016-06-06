@@ -26,7 +26,7 @@ public class Main {
         GameState gameState = new GameState(game);
 
         startWithPolicy(gameResult, gameState, new AgentIncreasingPolicy(gameState, EdgeKind.CostSharing));
-        startWithPolicy(gameResult, gameState, new AgentGreatestImprovePolicy(gameState, EdgeKind.CostSharing)));
+        startWithPolicy(gameResult, gameState, new AgentGreatestImprovePolicy(gameState, EdgeKind.CostSharing));
         for(PolicyResult policyResult: gameResult.policyResults) {
             System.out.println("Policy: " + policyResult.policyName);
             System.out.println("Number of steps: " + policyResult.steps.size());
