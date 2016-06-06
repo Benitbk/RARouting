@@ -3,14 +3,15 @@ package seriesParallelGraph.policies;
 import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.game.GameState;
 import seriesParallelGraph.graph.Route;
+import seriesParallelGraph.graph.edge.EdgeKind;
 
 /**
  * Created by benitbk on 06/06/2016.
  */
 public class AgentGreatestImprovePolicy extends AgentPolicy {
 
-    public AgentGreatestImprovePolicy(GameState gameState) {
-        super(gameState);
+    public AgentGreatestImprovePolicy(GameState gameState, EdgeKind edgeKind) {
+        super(gameState, edgeKind);
     }
 
     @Override

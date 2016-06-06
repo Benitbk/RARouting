@@ -9,6 +9,8 @@ import seriesParallelGraph.graph.edge.EdgeKind;
 import seriesParallelGraph.graph.panel.SPGraphPanel;
 import seriesParallelGraph.policies.AgentGreatestImprovePolicy;
 import seriesParallelGraph.policies.AgentIncreasingPolicy;
+import seriesParallelGraph.policies.AgentMaximalCostPolicy;
+import seriesParallelGraph.policies.AgentMinPathPolicy;
 
 import javax.swing.JFrame;
 import java.util.HashMap;
@@ -19,14 +21,14 @@ public class Main {
 	public static void main(String[] args) {
         Map<Agent, Route> oldRoutes = new HashMap<>();
 
-        Game game = Game.randomizeGame(15, 10, 5, 0.6, EdgeKind.LinearNegativeCongestion, true);
+        Game game = Game.randomizeGame(15, 10, 5, 0.6, EdgeKind.CostSharing, true);
         for(Agent agent : game.agents)
         {
             oldRoutes.put(agent, agent.getRoute());
         }
         showSPGraph(game.graph);
         GameState gameState = new GameState(game);
-        GamePlayer gamePlayer = new GamePlayer(gameState, new AgentGreatestImprovePolicy(gameState));
+        GamePlayer gamePlayer = new GamePlayer(gameState, new AgentMinPathPolicy(gameState,EdgeKind.CostSharing ));
         gamePlayer.start();
         System.out.println("finished");
         System.out.println("old routes");

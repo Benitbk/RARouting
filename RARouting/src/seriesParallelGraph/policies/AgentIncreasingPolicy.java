@@ -3,6 +3,7 @@ package seriesParallelGraph.policies;
 import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.game.GameState;
 import seriesParallelGraph.graph.Route;
+import seriesParallelGraph.graph.edge.EdgeKind;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ import java.util.List;
 public class AgentIncreasingPolicy extends AgentPolicy {
 	private int nextAgentToPlay;
 
-	public AgentIncreasingPolicy(GameState gameState) {
-		super(gameState);
+	public AgentIncreasingPolicy(GameState gameState, EdgeKind edgeKind) {
+		super(gameState, edgeKind);
 		nextAgentToPlay = 0;
 	}
 
