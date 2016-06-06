@@ -5,12 +5,14 @@ import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.SPGraph;
 import seriesParallelGraph.graph.Vertex;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by benitbk on 09/05/2016.
  */
-public class Agent {
+public class Agent implements Serializable {
+    private static final long serialVersionUID = 2228953572123708336L;
 	public final long id;
 	public Vertex source;
 	public Vertex destination;

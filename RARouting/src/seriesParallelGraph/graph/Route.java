@@ -2,10 +2,12 @@ package seriesParallelGraph.graph;
 
 import seriesParallelGraph.graph.edge.Edge;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Route {
+public class Route implements Serializable {
+    private static final long serialVersionUID = 2228953572123708337L;
 
 	public List<Edge> edges;
 
