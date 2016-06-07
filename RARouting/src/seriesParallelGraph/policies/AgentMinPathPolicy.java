@@ -6,7 +6,6 @@ import seriesParallelGraph.graph.Route;
 import seriesParallelGraph.graph.edge.CostSharingEdge;
 import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.edge.EdgeKind;
-import seriesParallelGraph.graph.edge.LinearNegativeCongestionEdge;
 
 import java.util.List;
 
@@ -15,8 +14,11 @@ import java.util.List;
  */
 public class AgentMinPathPolicy extends AgentPolicy {
 
-    public AgentMinPathPolicy(GameState gameState, EdgeKind edgeKind) {
-        super(gameState, edgeKind);
+    private EdgeKind edgeKind;
+
+	public AgentMinPathPolicy(GameState gameState, EdgeKind edgeKind) {
+        super(gameState);
+    this.edgeKind = edgeKind;
     }
 
     @Override

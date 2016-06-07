@@ -3,7 +3,6 @@ package seriesParallelGraph.policies;
 import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.game.GameState;
 import seriesParallelGraph.graph.Route;
-import seriesParallelGraph.graph.edge.EdgeKind;
 
 import java.util.List;
 
@@ -12,8 +11,8 @@ import java.util.List;
  */
 public class AgentMaximalCostPolicy extends AgentPolicy {
 
-    public AgentMaximalCostPolicy(GameState gameState, EdgeKind edgeKind) {
-        super(gameState, edgeKind);    }
+    public AgentMaximalCostPolicy(GameState gameState) {
+        super(gameState);    }
 
     @Override
     public Agent getNextAgent() {

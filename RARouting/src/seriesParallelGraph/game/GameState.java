@@ -2,10 +2,6 @@ package seriesParallelGraph.game;
 
 import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.graph.Route;
-import seriesParallelGraph.graph.SPGraph;
-
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 
 /**
  * Created by benitbk on 23/05/2016.

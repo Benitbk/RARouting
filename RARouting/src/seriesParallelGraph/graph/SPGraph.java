@@ -1,6 +1,5 @@
 package seriesParallelGraph.graph;
 
-import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.graph.edge.CostSharingEdge;
 import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.edge.EdgeKind;

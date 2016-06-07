@@ -23,9 +23,9 @@ public class Main {
         showSPGraph(game.graph);
         GameState gameState = new GameState(game);
 
-        startWithPolicy(gameResult, gameState, new AgentIncreasingPolicy(gameState, EdgeKind.CostSharing));
-        startWithPolicy(gameResult, gameState, new AgentGreatestImprovePolicy(gameState, EdgeKind.CostSharing));
-        startWithPolicy(gameResult, gameState, new AgentMaximalCostPolicy(gameState, EdgeKind.CostSharing));
+        startWithPolicy(gameResult, gameState, new AgentIncreasingPolicy(gameState));
+        startWithPolicy(gameResult, gameState, new AgentGreatestImprovePolicy(gameState));
+        startWithPolicy(gameResult, gameState, new AgentMaximalCostPolicy(gameState));
         //startWithPolicy(gameResult, gameState, new AgentMinPathPolicy(gameState, EdgeKind.CostSharing));
         for(PolicyResult policyResult: gameResult.policyResults) {
             System.out.println("Policy: " + policyResult.policyName);

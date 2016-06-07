@@ -1,7 +1,5 @@
 package seriesParallelGraph.game.results;
 
-import seriesParallelGraph.policies.AgentPolicy;
-
 import java.util.ArrayList;
 import java.util.List;
 
