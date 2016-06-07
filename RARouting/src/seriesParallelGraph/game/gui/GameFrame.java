@@ -29,7 +29,7 @@ public class GameFrame extends JFrame {
 		add(graphPanel);
 		add(new ResultsPanel(gameResult, this));
 
-		// pack();
+//		 pack();
 		setVisible(true);
 		repaint();
 	}

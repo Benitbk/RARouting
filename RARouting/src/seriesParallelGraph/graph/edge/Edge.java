@@ -29,7 +29,7 @@ public abstract class Edge extends SPGraph {
 	public int load;
 
 	@Override
-	public Route solve() {
+	public Route findBestSTPath() {
 		return new Route(this);
 	}
 

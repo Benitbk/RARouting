@@ -47,9 +47,9 @@ public class SeriesGraph extends SPGraph {
 	}
 
 	@Override
-	public Route solve() {
-		Route route = g1.solve();
-		route.edges.addAll(g2.solve().edges);
+	public Route findBestSTPath() {
+		Route route = g1.findBestSTPath();
+		route.edges.addAll(g2.findBestSTPath().edges);
 		return route;
 	}
 

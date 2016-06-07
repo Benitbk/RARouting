@@ -109,6 +109,7 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 
 			// draw edges leaving v
 			Color randColor = new Color(new Random().nextInt(0xFFFFFF) / 2);
+			// Color randColor = Color.DARK_GRAY;
 
 			// calculate the lines destinations
 			Map<Edge, Point> destinations = new HashMap<Edge, Point>();
@@ -148,12 +149,13 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 
 			int i = 0;
 			for (Edge e : edges) {
-				g.setColor(randColor);
 				Point dest = destinations.get(e);
 				if (boldEdges.contains(e)) {
 					g2.setStroke(boldStroke);
+					g.setColor(Color.ORANGE);
 				} else {
 					g2.setStroke(normalStroke);
+					g.setColor(randColor);
 				}
 
 				g.drawLine((int) lineSource.x, (int) lineSource.y,
@@ -194,13 +196,14 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 
 	@Override
 	public void componentResized(ComponentEvent e) {
-		float scaleBy;
+		float scaleBy = 0;
 		float graphAspectRatio = graph.getLength() * scale.x / graph.getWidth()
 				/ scale.y;
-		if (graphAspectRatio > getSize().width / getSize().height) { // fit to
+		if (graphAspectRatio > 1) {
+			// fit to panel width
 			scaleBy = getSize().width
 					/ ((graph.getLength() * scale.x + offset.x + 1) * grid.x);
-		} else {// fit to height of panel
+		} else {// fit to panel height
 			scaleBy = getSize().height
 					/ ((graph.getWidth() * scale.y + offset.y + 1) * grid.y);
 		}
@@ -210,7 +213,6 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 		Dimension dim = new Dimension(getSize().width, (int) ((graph.getWidth()
 				+ offset.y + 1)
 				* scale.y * grid.y));
-		// System.out.println("----" + dim);
 
 		// setMinimumSize(dim);
 		// setMaximumSize(dim);

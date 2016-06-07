@@ -1,5 +1,7 @@
 package seriesParallelGraph.game;
 
+import java.util.Map.Entry;
+
 import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.game.results.AgentStep;
 import seriesParallelGraph.game.results.PolicyResult;
@@ -20,7 +22,15 @@ public class GamePlayer {
 
 	}
 
-	public void start(PolicyResult policyResult) {
+	public void simulate(PolicyResult policyResult) {
+
+		for (Entry<Agent, Route> entry : gameState.game.initialRoutes
+				.entrySet()) {
+			Agent agent = entry.getKey();
+			Route route = entry.getValue();
+			agent.setRoute(route);
+		}
+
 		while (true) {
 			Agent nextAgent = this.policy.getNextAgent();
 			if (nextAgent == null) {
@@ -32,9 +42,9 @@ public class GamePlayer {
 
 				double oldCost = oldRoute.cost();
 				nextAgent.setRoute(improvedRoute);
-				policyResult.steps.add(new AgentStep(nextAgent, oldCost,
-						this.gameState.game.getSocialCost(), oldRoute,
-						improvedRoute));
+				policyResult.steps
+						.add(new AgentStep(nextAgent, oldCost, this.gameState
+								.getSocialCost(), oldRoute, improvedRoute));
 			}
 		}
 

@@ -1,6 +1,5 @@
 package seriesParallelGraph;
 
-import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.game.GameState;
 import seriesParallelGraph.game.gui.GameFrame;
 import seriesParallelGraph.game.results.GameResult;
@@ -34,7 +33,7 @@ public class Main {
 							+ policyResult.steps.get(policyResult.steps.size() - 1).socialCost);
 		}
 		System.out.println("Started");
-		
+
 		showSPGraph(game.graph, gameResult);
 	}
 
@@ -43,15 +42,9 @@ public class Main {
 		GamePlayer gamePlayer = new GamePlayer(gameState, policy);
 		PolicyResult policyResult = new PolicyResult(policy.getClass()
 				.getSimpleName());
-		gamePlayer.start(policyResult);
+		gamePlayer.simulate(policyResult);
 		System.out.println("finished policy: " + policyResult.policyName);
-		for (Agent agent : gameState.game.agents) {
-			gameResult.game.agents.stream()
-					.filter(initialAgent -> initialAgent.id == agent.id)
-					.forEach(initialAgent -> {
-						agent.setRoute(initialAgent.getRoute());
-					});
-		}
+
 		gameResult.policyResults.add(policyResult);
 
 	}
@@ -59,7 +52,7 @@ public class Main {
 	private static Game getGame(boolean fromCache) {
 		Game game = null;
 		if (!fromCache)
-			game = Game.randomizeGame(30, 10, 50, 0.5,
+			game = Game.randomizeGame(50, 10, 10, 0.5,
 					EdgeKind.LinearNegativeCongestion, true);
 		else {
 			try {

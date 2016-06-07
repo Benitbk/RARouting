@@ -1,13 +1,16 @@
 package seriesParallelGraph.game;
 
 import seriesParallelGraph.agent.Agent;
+import seriesParallelGraph.graph.Route;
 import seriesParallelGraph.graph.SPGraph;
 import seriesParallelGraph.graph.Vertex;
 import seriesParallelGraph.graph.edge.EdgeKind;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by benitbk on 23/05/2016.
@@ -19,17 +22,13 @@ public class Game implements Serializable {
 	public final SPGraph graph;
 	public final List<Agent> agents;
 
-	public Game(SPGraph graph, List<Agent> agents) {
+	public Map<Agent, Route> initialRoutes;
+
+	public Game(SPGraph graph, List<Agent> agents,
+			Map<Agent, Route> initialRoutes) {
 		this.graph = graph;
 		this.agents = agents;
-	}
-
-	public double getSocialCost() {
-		int socialCost = 0;
-		for (Agent agent : this.agents) {
-			socialCost += agent.getRoute().cost();
-		}
-		return socialCost;
+		this.initialRoutes = initialRoutes;
 	}
 
 	public static Game read(String name) throws Exception {
@@ -50,6 +49,7 @@ public class Game implements Serializable {
 
 		List<Vertex> vertices = graph.getVertices();
 		List<Agent> agents = new ArrayList<>();
+		Map<Agent, Route> initialRoutes = new HashMap<Agent, Route>();
 		for (int i = 0; i < numberOfAgents; i++) {
 			Agent agent = null;
 			if (randomizeAgents) {
@@ -57,11 +57,13 @@ public class Game implements Serializable {
 			} else {
 				agent = new Agent(graph.s, graph.t);
 			}
+			agents.add(agent);
 
 			SPGraph subGraph = graph.generateSubGraphFromVertices(agent.source,
 					agent.destination);
-			agent.setRoute(subGraph.generateRandomRoute());
-			agents.add(agent);
+
+			initialRoutes.put(agent, subGraph.generateRandomRoute());
+
 		}
 
 		// System.out.println("Agent\tRoute\tCost");
@@ -70,7 +72,7 @@ public class Game implements Serializable {
 		// System.out.println(currAgent.toStringEx());
 		// }
 
-		Game game = new Game(graph, agents);
+		Game game = new Game(graph, agents, initialRoutes);
 		game.write("last game");
 		// System.out.println(vertices);
 		// System.out.println(agents);

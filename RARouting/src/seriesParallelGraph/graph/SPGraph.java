@@ -23,7 +23,7 @@ public abstract class SPGraph implements Serializable {
 	public Vertex s;
 	public Vertex t;
 
-	public abstract Route solve();
+	public abstract Route findBestSTPath();
 
 	protected abstract SubSPGraph generateSubGraphFromVerticesRecursive(
 			Vertex s, Vertex t);

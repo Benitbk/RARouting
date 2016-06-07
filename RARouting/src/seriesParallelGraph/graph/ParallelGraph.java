@@ -63,9 +63,9 @@ public class ParallelGraph extends SPGraph {
 	}
 
 	@Override
-	public Route solve() {
-		Route route1 = g1.solve();
-		Route route2 = g2.solve();
+	public Route findBestSTPath() {
+		Route route1 = g1.findBestSTPath();
+		Route route2 = g2.findBestSTPath();
 
 		if (route1.forecastedCost() < route2.forecastedCost())
 			return route1;
