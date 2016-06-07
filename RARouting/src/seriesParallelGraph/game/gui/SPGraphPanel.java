@@ -4,14 +4,19 @@ import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.SPGraph;
 import seriesParallelGraph.graph.Vertex;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -23,12 +28,13 @@ import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputListener;
 
 // FIXME fix bug where an edge from g.s to g.t is drawn even when it is not
 // part of g (it is connected to g in parallel)
 @SuppressWarnings("serial")
 public class SPGraphPanel extends JPanel implements MouseWheelListener,
-		ComponentListener {
+		MouseInputListener, ComponentListener {
 
 	SPGraph graph;
 	Map<Vertex, Point> vertexLocations;
@@ -57,9 +63,10 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 			p.y *= scale.y;
 		}
 
-		this.addComponentListener(this);
-
 		this.addMouseWheelListener(this);
+		this.addMouseMotionListener(this);
+		this.addMouseListener(this);
+		this.addComponentListener(this);
 
 	}
 
@@ -78,7 +85,11 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 
 	}
 
+	BasicStroke boldStroke = new BasicStroke(5);
+	BasicStroke normalStroke = new BasicStroke(1);
+
 	private void drawGraph(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
 		Set<Entry<Vertex, Point>> vertsSet = vertexLocations.entrySet();
 		for (Entry<Vertex, Point> entry : vertsSet) {
 
@@ -139,6 +150,12 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 			for (Edge e : edges) {
 				g.setColor(randColor);
 				Point dest = destinations.get(e);
+				if (boldEdges.contains(e)) {
+					g2.setStroke(boldStroke);
+				} else {
+					g2.setStroke(normalStroke);
+				}
+
 				g.drawLine((int) lineSource.x, (int) lineSource.y,
 						(int) dest.x, (int) dest.y);
 
@@ -176,36 +193,38 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 	}
 
 	@Override
-	public void mouseWheelMoved(MouseWheelEvent e) {
-		grid.x -= e.getWheelRotation();
-		grid.y -= e.getWheelRotation();
-		repaint();
-	}
-
-	@Override
 	public void componentResized(ComponentEvent e) {
-		System.out.println(getSize());
-
-		float scaleBy = getSize().width
-				/ ((graph.getLength() * scale.x + offset.x + 1) * grid.x);
+		float scaleBy;
+		float graphAspectRatio = graph.getLength() * scale.x / graph.getWidth()
+				/ scale.y;
+		if (graphAspectRatio > getSize().width / getSize().height) { // fit to
+			scaleBy = getSize().width
+					/ ((graph.getLength() * scale.x + offset.x + 1) * grid.x);
+		} else {// fit to height of panel
+			scaleBy = getSize().height
+					/ ((graph.getWidth() * scale.y + offset.y + 1) * grid.y);
+		}
 		grid.x = grid.x * scaleBy;
 		grid.y = grid.y * scaleBy;
 
 		Dimension dim = new Dimension(getSize().width, (int) ((graph.getWidth()
 				+ offset.y + 1)
 				* scale.y * grid.y));
-		System.out.println("----" + dim);
+		// System.out.println("----" + dim);
 
-		setMinimumSize(dim);
-		setMaximumSize(dim);
+		// setMinimumSize(dim);
+		// setMaximumSize(dim);
 		// this.setSize(dim);
 		this.setPreferredSize(dim);
 
-		// this.setSize(
-		// (int) ((graph.getLength() + offset.x + 1) * scale.x * grid.x),
-		// (int) ((graph.getWidth() + offset.y + 1) * scale.y * grid.y));
-		// this.setPreferredSize(getSize());
-		System.out.println(getSize());
+		repaint();
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		grid.x -= (grid.x * 0.1 * e.getWheelRotation());
+		grid.y -= (grid.y * 0.1 * e.getWheelRotation());
+		repaint();
 	}
 
 	@Override
@@ -218,5 +237,51 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 
 	@Override
 	public void componentHidden(ComponentEvent e) {
+	}
+
+	private java.awt.Point oldLocation = null;
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		if (oldLocation != null) {
+			offset.x += (e.getX() - oldLocation.x) / grid.x;
+			offset.y += (e.getY() - oldLocation.y) / grid.y;
+		}
+
+		oldLocation = e.getPoint();
+		repaint();
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		oldLocation = null;
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
+
+	List<Edge> boldEdges = new ArrayList<Edge>();
+
+	public void setBoldEdges(List<Edge> boldEdges) {
+		this.boldEdges = boldEdges;
+		repaint();
 	}
 }
