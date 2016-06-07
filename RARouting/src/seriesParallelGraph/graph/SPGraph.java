@@ -1,10 +1,10 @@
 package seriesParallelGraph.graph;
 
+import seriesParallelGraph.game.gui.Point;
 import seriesParallelGraph.graph.edge.CostSharingEdge;
 import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.edge.EdgeKind;
 import seriesParallelGraph.graph.edge.LinearNegativeCongestionEdge;
-import seriesParallelGraph.graph.panel.Point;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

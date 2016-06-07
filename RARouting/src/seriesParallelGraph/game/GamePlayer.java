@@ -20,23 +20,23 @@ public class GamePlayer {
 
 	}
 
-	public void start(PolicyResult policyResult)
-    {
-		while(true){
+	public void start(PolicyResult policyResult) {
+		while (true) {
 			Agent nextAgent = this.policy.getNextAgent();
-			if(nextAgent == null)
-			{
+			if (nextAgent == null) {
 				return;
-			}
-			else
-			{
-				Route improvedRoute = this.gameState.getImprovedRoute(nextAgent);
-                double oldCost = nextAgent.getRoute().cost();
+			} else {
+				Route oldRoute = nextAgent.getRoute();
+				Route improvedRoute = this.gameState
+						.getImprovedRoute(nextAgent);
+
+				double oldCost = oldRoute.cost();
 				nextAgent.setRoute(improvedRoute);
-                policyResult.steps.add(new AgentStep(nextAgent, oldCost, this.gameState.game.getSocialCost()));
+				policyResult.steps.add(new AgentStep(nextAgent, oldCost,
+						this.gameState.game.getSocialCost(), oldRoute,
+						improvedRoute));
 			}
 		}
-
 
 	}
 

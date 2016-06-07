@@ -1,7 +1,7 @@
 package seriesParallelGraph.graph;
 
+import seriesParallelGraph.game.gui.Point;
 import seriesParallelGraph.graph.edge.Edge;
-import seriesParallelGraph.graph.panel.Point;
 
 import java.security.InvalidParameterException;
 import java.util.*;

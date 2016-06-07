@@ -1,7 +1,7 @@
 package seriesParallelGraph.graph.edge;
 
+import seriesParallelGraph.game.gui.Point;
 import seriesParallelGraph.graph.*;
-import seriesParallelGraph.graph.panel.Point;
 
 import java.util.*;
 

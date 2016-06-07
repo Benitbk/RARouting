@@ -2,76 +2,84 @@ package seriesParallelGraph;
 
 import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.game.GameState;
+import seriesParallelGraph.game.gui.GameFrame;
 import seriesParallelGraph.game.results.GameResult;
 import seriesParallelGraph.game.results.PolicyResult;
 import seriesParallelGraph.graph.*;
 import seriesParallelGraph.game.Game;
 import seriesParallelGraph.game.GamePlayer;
 import seriesParallelGraph.graph.edge.EdgeKind;
-import seriesParallelGraph.graph.panel.SPGraphPanel;
 import seriesParallelGraph.policies.*;
-
-import javax.swing.JFrame;
 
 public class Main {
 
 	public static void main(String[] args) {
-        System.out.println("Started");
+		System.out.println("Started");
 
-        Game game = getGame(false);
-        GameResult gameResult = new GameResult(game);
-        showSPGraph(game.graph);
-        GameState gameState = new GameState(game);
+		Game game = getGame(false);
+		GameResult gameResult = new GameResult(game);
+		GameState gameState = new GameState(game);
 
-        startWithPolicy(gameResult, gameState, new AgentIncreasingPolicy(gameState));
-        startWithPolicy(gameResult, gameState, new AgentGreatestImprovePolicy(gameState));
-        startWithPolicy(gameResult, gameState, new AgentMaximalCostPolicy(gameState));
-        //startWithPolicy(gameResult, gameState, new AgentMinPathPolicy(gameState, EdgeKind.CostSharing));
-        for(PolicyResult policyResult: gameResult.policyResults) {
-            System.out.println("Policy: " + policyResult.policyName);
-            System.out.println("Number of steps: " + policyResult.steps.size());
-            System.out.println("Final social cost: " + policyResult.steps.get(policyResult.steps.size() - 1).socialCost);
-        }
-        System.out.println("Started");
+		startWithPolicy(gameResult, gameState, new RoundRobin(gameState));
+		startWithPolicy(gameResult, gameState, new GreatestImprovePolicy(
+				gameState));
+		startWithPolicy(gameResult, gameState, new MaximalCostPolicy(gameState));
+		// startWithPolicy(gameResult, gameState, new
+		// AgentMinPathPolicy(gameState, EdgeKind.CostSharing));
+		for (PolicyResult policyResult : gameResult.policyResults) {
+			System.out.println("Policy: " + policyResult.policyName);
+			System.out.println("Number of steps: " + policyResult.steps.size());
+			System.out
+					.println("Final social cost: "
+							+ policyResult.steps.get(policyResult.steps.size() - 1).socialCost);
+		}
+		System.out.println("Started");
+		
+		showSPGraph(game.graph, gameResult);
 	}
 
+	private static void startWithPolicy(GameResult gameResult,
+			GameState gameState, AgentPolicy policy) {
+		GamePlayer gamePlayer = new GamePlayer(gameState, policy);
+		PolicyResult policyResult = new PolicyResult(policy.getClass()
+				.getSimpleName());
+		gamePlayer.start(policyResult);
+		System.out.println("finished policy: " + policyResult.policyName);
+		for (Agent agent : gameState.game.agents) {
+			gameResult.game.agents.stream()
+					.filter(initialAgent -> initialAgent.id == agent.id)
+					.forEach(initialAgent -> {
+						agent.setRoute(initialAgent.getRoute());
+					});
+		}
+		gameResult.policyResults.add(policyResult);
 
-    private static void startWithPolicy(GameResult gameResult, GameState gameState, AgentPolicy policy) {
-        GamePlayer gamePlayer = new GamePlayer(gameState, policy);
-        PolicyResult policyResult = new PolicyResult(policy.getClass().getSimpleName());
-        gamePlayer.start(policyResult);
-        System.out.println("finished policy: " + policyResult.policyName);
-        for(Agent agent:gameState.game.agents) {
-            gameResult.game.agents.stream().filter(initialAgent -> initialAgent.id == agent.id).forEach(initialAgent -> {
-                agent.setRoute(initialAgent.getRoute());
-            });
-        }
-        gameResult.policyResults.add(policyResult);
+	}
 
-    }
+	private static Game getGame(boolean fromCache) {
+		Game game = null;
+		if (!fromCache)
+			game = Game.randomizeGame(30, 10, 50, 0.5,
+					EdgeKind.LinearNegativeCongestion, true);
+		else {
+			try {
+				game = Game.read("last game");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Failed reading game from file");
+			}
+		}
+		return game;
+	}
 
-    private static Game getGame(boolean fromCache) {
-        Game game = null;
-        if(!fromCache)
-            game = Game.randomizeGame(100, 10, 50, 0.6, EdgeKind.LinearNegativeCongestion, true);
-        else {
-            try {
-                game = Game.read("last game");
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Failed reading game from file");
-            }
-        }
-        return game;
-    }
-
-	private static void showSPGraph(SPGraph g) {
-		JFrame frame = new JFrame();
-		frame.add(new SPGraphPanel(g));
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
-		frame.repaint();
+	private static void showSPGraph(SPGraph g, GameResult gameResult) {
+		// JFrame frame = new JFrame();
+		// frame.add(new SPGraphPanel(g));
+		// frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		// frame.pack();
+		// frame.setVisible(true);
+		// frame.repaint();
+		new GameFrame(gameResult);
 	}
 
 	// public static void test() {
