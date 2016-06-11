@@ -23,6 +23,7 @@ public class Main {
 		startWithPolicy(gameResult, gameState, new GreatestImprovePolicy(
 				gameState));
 		startWithPolicy(gameResult, gameState, new MaximalCostPolicy(gameState));
+		startWithPolicy(gameResult, gameState, new MinPathPolicy(gameState, EdgeKind.CostSharing));
 		// startWithPolicy(gameResult, gameState, new
 		// AgentMinPathPolicy(gameState, EdgeKind.CostSharing));
 		for (PolicyResult policyResult : gameResult.policyResults) {
@@ -31,6 +32,7 @@ public class Main {
 			System.out
 					.println("Final social cost: "
 							+ policyResult.steps.get(policyResult.steps.size() - 1).socialCost);
+			System.out.println();
 		}
 		System.out.println("Started");
 
@@ -52,8 +54,8 @@ public class Main {
 	private static Game getGame(boolean fromCache) {
 		Game game = null;
 		if (!fromCache)
-			game = Game.randomizeGame(50, 10, 10, 0.5,
-					EdgeKind.LinearNegativeCongestion, true);
+			game = Game.randomizeGame(100, 10, 50, 0.5,
+					EdgeKind.CostSharing, true);
 		else {
 			try {
 				game = Game.read("last game");

@@ -13,7 +13,6 @@ import java.awt.Graphics2D;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
@@ -214,7 +213,7 @@ public class SPGraphPanel extends JPanel implements MouseWheelListener,
 				+ offset.y + 1)
 				* scale.y * grid.y));
 
-		// setMinimumSize(dim);
+		 setMinimumSize(dim);
 		// setMaximumSize(dim);
 		// this.setSize(dim);
 		this.setPreferredSize(dim);

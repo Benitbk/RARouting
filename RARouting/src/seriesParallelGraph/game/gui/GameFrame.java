@@ -6,9 +6,6 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
 import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.game.results.GameResult;
 import seriesParallelGraph.graph.edge.Edge;
@@ -23,7 +20,7 @@ public class GameFrame extends JFrame {
 		this.gameResult = gameResult;
 		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(800, 500);
+		setSize(1000, 800);
 
 		graphPanel = new SPGraphPanel(gameResult.game.graph);
 		add(graphPanel);
