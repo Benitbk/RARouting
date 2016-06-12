@@ -77,6 +77,12 @@ public abstract class SPGraph implements Serializable {
 		return vertsLoc;
 	}
 
+	static int[][] preChosenGraphPairs = new int[][] { { 0, 1 }, { 0, 1 },
+			{ 0, 1 }, { 0, 1 }, { 0, 1 }, { 0, 1 }, { 0, 1 }, { 0, 1 },
+			{ 0, 1 }, { 0, 1 }, { 0, 1 }, { 0, 1 } };
+	static double[] preChosenGraphType = new double[] { 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 1, 1, 1 };
+
 	public static SPGraph randomizeGraph(int size, int maxEdgeCost,
 			double parallelProbability, EdgeKind edgeKind) {
 		Random random = new Random();
@@ -92,15 +98,19 @@ public abstract class SPGraph implements Serializable {
 
 		}
 
-		while (graphs.size() > 1) {
+		for (int i = 0; graphs.size() > 1; i++) {
 			int i1 = 0;
 			int i2 = 0;
-			while (i1 >= i2) {
+			do {
 				i1 = random.nextInt(graphs.size());
 				i2 = random.nextInt(graphs.size());
-			}
+				// i1 = preChosenGraphPairs[i][0];
+				// i2 = preChosenGraphPairs[i][1];
+			} while (i1 >= i2);
 
-			if (random.nextDouble() <= parallelProbability)
+			double randType = random.nextDouble();
+			// randType = preChosenGraphType[i];
+			if (randType <= parallelProbability)
 				graphs.add(new ParallelGraph(graphs.get(i1), graphs.get(i2),
 						true));
 			else

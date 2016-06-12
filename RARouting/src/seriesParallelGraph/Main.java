@@ -54,7 +54,7 @@ public class Main {
 	private static Game getGame(boolean fromCache) {
 		Game game = null;
 		if (!fromCache)
-			game = Game.randomizeGame(100, 10, 50, 0.5,
+			game = Game.randomizeGame(13, 10, 50, 0.5,
 					EdgeKind.CostSharing, true);
 		else {
 			try {
