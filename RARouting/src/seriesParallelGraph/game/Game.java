@@ -4,6 +4,7 @@ import seriesParallelGraph.agent.Agent;
 import seriesParallelGraph.graph.Route;
 import seriesParallelGraph.graph.SPGraph;
 import seriesParallelGraph.graph.Vertex;
+import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.edge.EdgeKind;
 
 import java.io.*;
@@ -61,6 +62,18 @@ public class Game implements Serializable {
 
 			SPGraph subGraph = graph.generateSubGraphFromVertices(agent.source,
 					agent.destination);
+
+			// increase average load of relevant edges
+			List<Route> strategies = subGraph.getStrategies();
+			// split the load equally among the strategies
+			double strategyLoad = 1.0 / strategies.size();
+			for (Route route : strategies) {
+				// split the load equally among the edges
+				double edgeLoad = strategyLoad / route.edges.size();
+				for (Edge edge : route.edges) {
+					edge.averageLoad += edgeLoad;
+				}
+			}
 
 			initialRoutes.put(agent, subGraph.generateRandomRoute());
 

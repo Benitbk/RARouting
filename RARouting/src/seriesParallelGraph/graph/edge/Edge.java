@@ -27,6 +27,8 @@ public abstract class Edge extends SPGraph {
 	}
 
 	public int load;
+	
+	public double averageLoad = 0;
 
 	@Override
 	public Route findBestSTPath() {

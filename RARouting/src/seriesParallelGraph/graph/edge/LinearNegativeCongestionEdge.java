@@ -11,7 +11,7 @@ public class LinearNegativeCongestionEdge extends Edge {
 	 */
 	private static final long serialVersionUID = -4581791098774497391L;
 
-	double factor;
+	public double factor;
 
 	public LinearNegativeCongestionEdge(Vertex s, Vertex t, double factor) {
 		super(s, t);

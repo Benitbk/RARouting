@@ -6,6 +6,7 @@ import seriesParallelGraph.graph.Route;
 import seriesParallelGraph.graph.edge.CostSharingEdge;
 import seriesParallelGraph.graph.edge.Edge;
 import seriesParallelGraph.graph.edge.EdgeKind;
+import seriesParallelGraph.graph.edge.LinearNegativeCongestionEdge;
 
 import java.util.List;
 
@@ -14,58 +15,58 @@ import java.util.List;
  */
 public class MinPathPolicy extends AgentPolicy {
 
-    private EdgeKind edgeKind;
+	private EdgeKind edgeKind;
 
 	public MinPathPolicy(GameState gameState, EdgeKind edgeKind) {
-        super(gameState);
-    this.edgeKind = edgeKind;
-    }
+		super(gameState);
+		this.edgeKind = edgeKind;
+	}
 
-    @Override
-    public Agent getNextAgent() {
-        if (edgeKind == EdgeKind.CostSharing) {
-            List<Agent> agents = this.gameState.game.agents;
+	@Override
+	public Agent getNextAgent() {
+		// if (edgeKind == EdgeKind.CostSharing) {
+		List<Agent> agents = this.gameState.game.agents;
 
-            double minPath = Double.MAX_VALUE;
+		double minPath = Double.MAX_VALUE;
 
-            Agent nextAgentToPlay=null;
+		Agent nextAgentToPlay = null;
 
-            for (int i=0; i<agents.size();i++)
-            {
-                Agent agent = agents.get(i);
+		for (int i = 0; i < agents.size(); i++) {
+			Agent agent = agents.get(i);
 
-                Route improvedRoute = this.gameState.getImprovedRoute(agent);
-                if (improvedRoute != null)
-                {
-                    // Todo: get the cost
-                    double improvedRouteCost = GetCostOfRoute(improvedRoute);
+			Route improvedRoute = this.gameState.getImprovedRoute(agent);
+			if (improvedRoute != null) {
+				// Todo: get the cost
+				double improvedRouteCost = GetCostOfRoute(improvedRoute);
 
-                    if (improvedRouteCost < minPath)
-                    {
-                        nextAgentToPlay=agent;
-                        minPath = improvedRouteCost;
-                    }
-                }
-            }
+				if (improvedRouteCost < minPath) {
+					nextAgentToPlay = agent;
+					minPath = improvedRouteCost;
+				}
+			}
+		}
 
-            return nextAgentToPlay;
-        }
+		return nextAgentToPlay;
+		// }
 
-        return null;
-    }
+	}
 
-    private double GetCostOfRoute(Route route)
-    {
-        double cost =0;
+	private double GetCostOfRoute(Route route) {
+		double cost = 0;
 
-        if (edgeKind == EdgeKind.CostSharing) {
+		if (edgeKind == EdgeKind.CostSharing) {
 
-            for (Edge edge : route.edges) {
-                cost += ((CostSharingEdge) edge).cost;
-            }
+			for (Edge edge : route.edges) {
+				cost += ((CostSharingEdge) edge).cost;
+			}
 
-        }
+		} else if (edgeKind == EdgeKind.LinearNegativeCongestion) {
+			for (Edge edge : route.edges) {
+				LinearNegativeCongestionEdge e = (LinearNegativeCongestionEdge) edge;
+				cost += e.averageLoad * e.factor;
+			}
+		}
 
-        return cost;
-    }
+		return cost;
+	}
 }

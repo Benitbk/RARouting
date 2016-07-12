@@ -23,7 +23,7 @@ public class Main {
 		startWithPolicy(gameResult, gameState, new GreatestImprovePolicy(
 				gameState));
 		startWithPolicy(gameResult, gameState, new MaximalCostPolicy(gameState));
-		startWithPolicy(gameResult, gameState, new MinPathPolicy(gameState, EdgeKind.CostSharing));
+		startWithPolicy(gameResult, gameState, new MinPathPolicy(gameState, EdgeKind.LinearNegativeCongestion));
 		// startWithPolicy(gameResult, gameState, new
 		// AgentMinPathPolicy(gameState, EdgeKind.CostSharing));
 		for (PolicyResult policyResult : gameResult.policyResults) {
@@ -54,8 +54,8 @@ public class Main {
 	private static Game getGame(boolean fromCache) {
 		Game game = null;
 		if (!fromCache)
-			game = Game.randomizeGame(13, 10, 50, 0.5,
-					EdgeKind.CostSharing, true);
+			game = Game.randomizeGame(100, 10, 15, 0.6,
+					EdgeKind.LinearNegativeCongestion, true);
 		else {
 			try {
 				game = Game.read("last game");

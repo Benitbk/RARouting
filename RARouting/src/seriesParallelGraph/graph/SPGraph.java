@@ -156,9 +156,7 @@ public abstract class SPGraph implements Serializable {
 	public abstract Set<Vertex> getVerticesRecursive();
 
 	public List<Edge> getEdges() {
-		List<Edge> edges = new ArrayList<>();
-		edges.addAll(this.getEdgesRecursive());
-		return edges;
+		return this.getEdgesRecursive();
 	}
 
 	public abstract List<Edge> getEdgesRecursive();
