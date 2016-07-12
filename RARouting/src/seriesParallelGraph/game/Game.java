@@ -68,10 +68,8 @@ public class Game implements Serializable {
 			// split the load equally among the strategies
 			double strategyLoad = 1.0 / strategies.size();
 			for (Route route : strategies) {
-				// split the load equally among the edges
-				double edgeLoad = strategyLoad / route.edges.size();
 				for (Edge edge : route.edges) {
-					edge.averageLoad += edgeLoad;
+					edge.averageLoad += strategyLoad;
 				}
 			}
 
